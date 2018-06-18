@@ -10,6 +10,15 @@ namespace AppendA
     {
         static void Main(string[] args)
         {
+            string am = "Kuty";
+            Console.WriteLine(AppendA(am));
+
+            Console.ReadKey();
+        }
+
+        static string AppendA(string text)
+        {
+            return text + "a";
         }
     }
 }
