@@ -10,6 +10,15 @@ namespace Doubling
     {
         static void Main(string[] args)
         {
+            int baseNum = 123;
+            Console.WriteLine(Doubling(baseNum));
+
+            Console.ReadKey();
+        }
+
+        static int Doubling(int number)
+        {
+            return number * 2;
         }
     }
 }
