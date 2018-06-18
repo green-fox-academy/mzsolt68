@@ -13,11 +13,10 @@ namespace FindUpperCase
             Console.WriteLine("Input some text:");
             string text = Console.ReadLine();
 
-            char[] arrayFromText = text.ToCharArray();
-            var upperCharsWithquery = from ch in arrayFromText
+            IEnumerable<char> upperCharsWithquery = from ch in text
                                           where char.IsUpper(ch)
                                           select ch;
-            var upperCharsWithMethod = arrayFromText.Where(ch=>char.IsUpper(ch));
+            IEnumerable<char> upperCharsWithMethod = text.Where(ch=>char.IsUpper(ch));
             Console.WriteLine("\n Uppercase characters");
             Console.WriteLine("With query:");
             foreach (var ch in upperCharsWithquery)
