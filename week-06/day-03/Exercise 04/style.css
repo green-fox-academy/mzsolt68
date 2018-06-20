@@ -1,0 +1,17 @@
+body{
+	background-color: lightgray;
+}
+
+.flex-container{
+	display: flex;
+	background-color: white;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 100px;
+}
+
+.providers{
+	display: block;
+}
