@@ -5,8 +5,8 @@ table#t01{
 		width: 75%;
 		position: relative;
 		left: 100px;	
-		border: 20px solid;
-		border-color: blue;
+		border: 30px solid;
+		border-color: dodgerblue;
 }
 
 table#t01 tr:nth-child(even){
