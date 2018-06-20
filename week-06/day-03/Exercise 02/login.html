@@ -2,6 +2,16 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style.css">
+		<script>
+			function checkpassword()
+			{
+				var pass1 = document.getElementById('pass');
+				var pass2 = document.getElementById('pass2');
+				if(pass1.value != pass2.value){
+					window.alert("Passwords doesn't match, please try again!");
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<form>
@@ -19,7 +29,7 @@
 				<input type="password" id="pass2" name="user_pass2">
 			</div>
 			<div class="button">
-				<button type="submit">Login</button>
+				<button onclick="checkpassword()" type="submit">Login</button>
 			</div>
 		</form>
 	</body>
