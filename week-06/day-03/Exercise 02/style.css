@@ -12,14 +12,18 @@ form{
 	padding-bottom: 30px;
 }
 
-inputfield{
+input{
 	display: block;
+	padding: 10px 50px 10px 10px;
 	margin-bottom: 20px;
 	margin-top: 5px;
-	padding: 10px 50px 10px 10px;
 }
 
 input:focus{
 	outline: none;
 	border: 1px solid green;
+}
+
+button{
+	margin-top: 30px;
 }
