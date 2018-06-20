@@ -1,0 +1,14 @@
+body{
+	background-color: lightgray;
+}
+
+form{
+	position:relative;
+	left: 400px;
+	width: 500px;
+	background-color: white;
+}
+
+h1{
+	padding: 30px;
+}
