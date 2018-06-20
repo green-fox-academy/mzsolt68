@@ -1,0 +1,25 @@
+table#t01{
+		border-collapse: collapse;
+		font-size: 300%;
+		background-color: white;
+		width: 75%;
+		position: relative;
+		left: 100px;	
+		border: 30px solid;
+		border-color: dodgerblue;
+}
+
+table#t01 tr:nth-child(even){
+	background-color: lightgray;
+}
+
+table#t01 th{
+	color: white;
+	background-color: black;
+	padding: 20px;
+}
+
+table#t01 tr, td{
+	border: 2px solid;
+	padding: 20px;
+}
