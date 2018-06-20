@@ -21,7 +21,7 @@ input{
 }
 
 input[type="password"]{
-	padding-right: 50px;
+	padding-right: 30px;
 }
 
 input:focus{
@@ -38,3 +38,4 @@ button{
 	color: white;
 	background-color: black;
 }
+
