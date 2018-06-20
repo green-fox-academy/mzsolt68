@@ -5,7 +5,7 @@ body{
 form{
 	position:relative;
 	left: 400px;
-	width: 500px;
+	width: 400px;
 	background-color: white;
 	padding-top: 30px;
 	padding-left: 70px;
@@ -14,9 +14,14 @@ form{
 
 input{
 	display: block;
-	padding: 10px 50px 10px 10px;
+	padding: 10px 10px 10px 10px;
 	margin-bottom: 20px;
 	margin-top: 5px;
+	width: 350px;
+}
+
+input[type="password"]{
+	padding-right: 50px;
 }
 
 input:focus{
