@@ -22,8 +22,8 @@ namespace TODO
         static void CreateDatabase(string fileName)
         {
             SQLiteConnection.CreateFile(fileName);
-            string createTable = "CREATE TABLE IF NOT EXISTS 'Todos'(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR, status VARCHAR, createdAt DATETIME, completedAt DATETIME)";
-            SQLiteConnection conn = new SQLiteConnection(fileName);
+            string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR, status VARCHAR, createdAt DATETIME, completedAt DATETIME)";
+            SQLiteConnection conn = new SQLiteConnection("Data Source=Todo.sqlite; Version=3");
             conn.Open();
             SQLiteCommand command = new SQLiteCommand(createTable, conn);
             command.ExecuteNonQuery();
