@@ -13,6 +13,7 @@ namespace TODO
         SQLiteConnection connection;
         SQLiteCommand command;
         SQLiteDataReader reader;
+        string commandText;
 
         public Database(string database)
         {
@@ -20,11 +21,11 @@ namespace TODO
             if (!File.Exists(database))
             {
                 SQLiteConnection.CreateFile(database);
-                string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
+                commandText = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
                 using (connection)
                 {
                     OpenConnection();
-                    using (SQLiteCommand command = new SQLiteCommand(createTable, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
                     {
                         command.ExecuteNonQuery();
                     }
@@ -45,15 +46,26 @@ namespace TODO
                 connection.Close();
         }
 
+        private bool IdIsValid(int id)
+        {
+            commandText = "Select COUNT(1) FROM Todos WHERE id = @id";
+            OpenConnection();
+            using (command = new SQLiteCommand(commandText, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                return (Convert.ToInt32(command.ExecuteScalar()) == 1) ? true : false;
+            }
+        }
+
         public void AddNewTodo(Todo todo)
         {
-            string commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
+            commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
             OpenConnection();
-            using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
+            using (command = new SQLiteCommand(commandText, connection))
             {
-                command.Parameters.AddWithValue("text", todo.text);
-                command.Parameters.AddWithValue("created", todo.createdAt);
-                command.Parameters.AddWithValue("completed", todo.completedAt);
+                command.Parameters.AddWithValue("@text", todo.text);
+                command.Parameters.AddWithValue("@created", todo.createdAt);
+                command.Parameters.AddWithValue("@completed", todo.completedAt);
                 command.ExecuteNonQuery();
                 Console.WriteLine("Todo added");
             }
@@ -62,9 +74,9 @@ namespace TODO
 
         public void ListAllTodos()
         {
-            string cmdText = "SELECT * FROM todos";
+            commandText = "SELECT * FROM todos";
             OpenConnection();
-            using (command = new SQLiteCommand(cmdText, connection))
+            using (command = new SQLiteCommand(commandText, connection))
             {
                 using (reader = command.ExecuteReader())
                 {
@@ -78,6 +90,27 @@ namespace TODO
                         Console.WriteLine(todo.ToString());
                     }
                 }
+            }
+            CloseConnection();
+        }
+
+        public void CompleteTodo(int id)
+        {
+            OpenConnection();
+            if (IdIsValid(id))
+            {
+                commandText = "UPDATE Todos SET completedAt = @completed WHERE id = @id";
+                using (command = new SQLiteCommand(commandText, connection))
+                {
+                        command.Parameters.AddWithValue("@completed", DateTime.Now);
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Todo completed");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Todo Nr. {id} is not in the database.");
             }
             CloseConnection();
         }

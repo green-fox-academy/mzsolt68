@@ -33,6 +33,7 @@ namespace TODO
                 case "-r":
                     break;
                 case "-c":
+                    Complete(args);
                     break;
                 case "-u":
                     break;
@@ -49,6 +50,20 @@ namespace TODO
             }
         }
 
+        private static void Complete(string[] args)
+        {
+            int id;
+
+            if ((args.Length < 2) || (!int.TryParse(args[1], out id)))
+            {
+                Console.WriteLine("Missing or wrong id.");
+            }
+            else
+            {
+                db.CompleteTodo(id);
+            }
+        }
+
         private static void Save(Todo todo)
         {
             //
@@ -62,11 +77,6 @@ namespace TODO
         private static Todo Load(string text)
         {
             return null;
-        }
-
-        private static void LoadAll()
-        {
-            
         }
 
         private static void Delete()
@@ -123,8 +133,8 @@ namespace TODO
             Console.WriteLine("\nCommand line arguments:");
             Console.WriteLine(" -l\tLists all the tasks");
             Console.WriteLine(" -a\tAdds a new task");
-            Console.WriteLine(" -r\tRemoves a task");
-            Console.WriteLine(" -c\tCompletes a task");
+            Console.WriteLine(" -r [id]\tRemoves a task");
+            Console.WriteLine(" -c [id]\tCompletes a task");
             Console.WriteLine(" -u [id] [description] Update task description");
         }
 
