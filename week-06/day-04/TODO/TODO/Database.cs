@@ -42,5 +42,20 @@ namespace TODO
             if (connection.State != System.Data.ConnectionState.Closed)
                 connection.Close();
         }
+
+        public void AddNewTodo(Todo todo)
+        {
+            string commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
+            OpenConnection();
+            using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
+            {
+                command.Parameters.AddWithValue("text", todo.text);
+                command.Parameters.AddWithValue("created", todo.createdAt);
+                command.Parameters.AddWithValue("completed", todo.completedAt);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Todo added");
+            }
+            CloseConnection();
+        }
     }
 }

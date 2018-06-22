@@ -131,17 +131,7 @@ namespace TODO
                 default:
                     break;
             }
-            string commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
-            {
-                command.Parameters.AddWithValue("text", todo.text);
-                command.Parameters.AddWithValue("created", todo.createdAt);
-                command.Parameters.AddWithValue("completed", todo.completedAt);
-                command.ExecuteNonQuery();
-                Console.WriteLine("Todo added");
-            }
-            connection.Close();
+            db.AddNewTodo(todo);
         }
 
         private static void PrintUsage()
