@@ -16,7 +16,7 @@ namespace TodoTestEF
                 todos = db.Todos.ToList();
             }
             todos.ForEach(
-                todo => Console.WriteLine(todo.text));
+                todo => Console.WriteLine($"{todo.id} {todo.text} {todo.createdAt} {todo.completedAt}"));
 
             Console.ReadKey();
         }
