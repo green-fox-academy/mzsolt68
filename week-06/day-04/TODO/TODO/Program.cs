@@ -4,31 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Data.SQLite.EF6;
 using System.IO;
 
 namespace TODO
 {
     class Program
     {
-        static SQLiteConnection connection;
-        static List<Todo> todos = new List<Todo>();
+        static List<Todo> todoList = new List<Todo>();
         static void Main(string[] args)
         {
             string databaseFile = "Todo.sqlite";
-            connection = new SQLiteConnection("Data Source=Todo.sqlite; Version=3");
+            SQLiteConnection connection = new SQLiteConnection("Data Source=Todo.sqlite; Version=3");
             if (!File.Exists(databaseFile))
-                CreateDatabase(databaseFile);
+                CreateDatabase(databaseFile, connection);
+            
             if (args.Length == 0)
             {
                 PrintUsage();
                 Environment.Exit(0);
             }
-            LoadAll();
+            LoadAll(connection);
             switch (args[0])
             {
-                case "-l": ListTodos();
+                case "-l":
+                    ListTodos();
                     break;
-                case "-a": 
+                case "-a":
+                    Add(args, connection);
                     break;
                 case "-r":
                     break;
@@ -43,51 +46,105 @@ namespace TODO
 
         private static void ListTodos()
         {
-            foreach (var todo in todos)
+            foreach (var todo in todoList)
             {
-                Console.WriteLine($"{todo.id} -  {todo.text}");
+                Console.WriteLine(todo.ToString());
             }
         }
 
         private static void Save(Todo todo)
-        { }
+        {
+            //
+        }
 
 
         private static Todo Load(int id)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         private static Todo Load(string text)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
-        private static void LoadAll()
+        private static void LoadAll(SQLiteConnection connection)
         {
-            string commandtext = "SELECT * FROM Todos";
-            using (connection)
+            string cmdText = "SELECT * FROM todos";
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(cmdText, connection))
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(commandtext, connection)) 
+                using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            Todo tmp = new Todo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                                reader.GetDateTime(3), reader.GetDateTime(4));
-                            todos.Add(tmp);
-                        }
+                        Todo todo = new Todo();
+                        todo.id = reader.GetInt32(0);
+                        todo.text = reader.GetString(1);
+                        todo.createdAt = reader.GetDateTime(2);
+                        todo.completedAt = reader["completedAt"] == DBNull.Value ? (DateTime?)null : reader.GetDateTime(3);
+                        todoList.Add(todo);
                     }
                 }
-                connection.Clone();
             }
+            connection.Close();
         }
 
         private static void Delete()
         {
-            throw new NotImplementedException();
+            //
+        }
+
+        private static void Add(string[] args, SQLiteConnection connection)
+        {
+            Todo todo = new Todo();
+            DateTime tmp;
+            switch (args.Length)
+            {
+                case 1: Console.WriteLine("Not enough parameter!");
+                    break;
+                case 2:
+                    todo.text = args[1];
+                    todo.createdAt = DateTime.Now;
+                    break;
+                case 3:
+                    todo.text = args[1];
+                    if (DateTime.TryParse(args[2], out tmp))
+                    {
+                        todo.createdAt = tmp;
+                    }
+                    else
+                        Console.WriteLine("Wrong parameter!");
+                    break;
+                case 4:
+                    todo.text = args[1];
+                    if (DateTime.TryParse(args[2], out tmp))
+                    {
+                        todo.createdAt = tmp;
+                    }
+                    else
+                        Console.WriteLine("Wrong parameter!");
+                    if (DateTime.TryParse(args[3], out tmp))
+                    {
+                        todo.completedAt = tmp;
+                    }
+                    else
+                        Console.WriteLine("Wrong parameter!");
+                    break;
+                default:
+                    break;
+            }
+            string commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
+            {
+                command.Parameters.AddWithValue("text", todo.text);
+                command.Parameters.AddWithValue("created", todo.createdAt);
+                command.Parameters.AddWithValue("completed", todo.completedAt);
+                command.ExecuteNonQuery();
+                Console.WriteLine("Todo added");
+            }
+            connection.Close();
         }
 
         private static void PrintUsage()
@@ -102,10 +159,10 @@ namespace TODO
             Console.WriteLine(" -u [id] [description] Update task description");
         }
 
-        private static void CreateDatabase(string fileName)
+        private static void CreateDatabase(string fileName, SQLiteConnection connection)
         {
             SQLiteConnection.CreateFile(fileName);
-            string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, status VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
+            string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
             using (connection)
             {
                 connection.Open();
