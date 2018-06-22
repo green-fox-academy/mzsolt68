@@ -10,7 +10,9 @@ namespace TODO
 {
     class Database
     {
-        public SQLiteConnection connection;
+        SQLiteConnection connection;
+        SQLiteCommand command;
+        SQLiteDataReader reader;
 
         public Database(string database)
         {
@@ -54,6 +56,28 @@ namespace TODO
                 command.Parameters.AddWithValue("completed", todo.completedAt);
                 command.ExecuteNonQuery();
                 Console.WriteLine("Todo added");
+            }
+            CloseConnection();
+        }
+
+        public void ListAllTodos()
+        {
+            string cmdText = "SELECT * FROM todos";
+            OpenConnection();
+            using (command = new SQLiteCommand(cmdText, connection))
+            {
+                using (reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Todo todo = new Todo();
+                        todo.id = reader.GetInt32(0);
+                        todo.text = reader.GetString(1);
+                        todo.createdAt = reader.GetDateTime(2);
+                        todo.completedAt = reader.GetDateTime(3);
+                        Console.WriteLine(todo.ToString());
+                    }
+                }
             }
             CloseConnection();
         }

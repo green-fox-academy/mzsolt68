@@ -22,14 +22,13 @@ namespace TODO
                 Environment.Exit(0);
             }
             db = new Database(databaseFile);
-            LoadAll();
             switch (args[0])
             {
                 case "-l":
-                    ListTodos();
+                    db.ListAllTodos();
                     break;
                 case "-a":
-                    Add(args, db.connection);
+                    Add(args);
                     break;
                 case "-r":
                     break;
@@ -67,24 +66,7 @@ namespace TODO
 
         private static void LoadAll()
         {
-            string cmdText = "SELECT * FROM todos";
-            db.OpenConnection();
-            using (SQLiteCommand command = new SQLiteCommand(cmdText, db.connection))
-            {
-                using (SQLiteDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Todo todo = new Todo();
-                        todo.id = reader.GetInt32(0);
-                        todo.text = reader.GetString(1);
-                        todo.createdAt = reader.GetDateTime(2);
-                        todo.completedAt = reader.GetDateTime(3);
-                        todoList.Add(todo);
-                    }
-                }
-            }
-            db.CloseConnection();
+            
         }
 
         private static void Delete()
@@ -92,7 +74,7 @@ namespace TODO
             //
         }
 
-        private static void Add(string[] args, SQLiteConnection connection)
+        private static void Add(string[] args)
         {
             Todo todo = new Todo();
             DateTime tmp;
