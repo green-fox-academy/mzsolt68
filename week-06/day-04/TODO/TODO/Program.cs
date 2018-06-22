@@ -12,26 +12,24 @@ namespace TODO
     class Program
     {
         static List<Todo> todoList = new List<Todo>();
+        static Database db;
         static void Main(string[] args)
         {
             string databaseFile = "Todo.sqlite";
-            SQLiteConnection connection = new SQLiteConnection("Data Source=Todo.sqlite; Version=3");
-            if (!File.Exists(databaseFile))
-                CreateDatabase(databaseFile, connection);
-            
             if (args.Length == 0)
             {
                 PrintUsage();
                 Environment.Exit(0);
             }
-            LoadAll(connection);
+            db = new Database(databaseFile);
+            LoadAll();
             switch (args[0])
             {
                 case "-l":
                     ListTodos();
                     break;
                 case "-a":
-                    Add(args, connection);
+                    Add(args, db.connection);
                     break;
                 case "-r":
                     break;
@@ -67,11 +65,11 @@ namespace TODO
             return null;
         }
 
-        private static void LoadAll(SQLiteConnection connection)
+        private static void LoadAll()
         {
             string cmdText = "SELECT * FROM todos";
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(cmdText, connection))
+            db.OpenConnection();
+            using (SQLiteCommand command = new SQLiteCommand(cmdText, db.connection))
             {
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
@@ -86,7 +84,7 @@ namespace TODO
                     }
                 }
             }
-            connection.Close();
+            db.CloseConnection();
         }
 
         private static void Delete()
@@ -158,19 +156,5 @@ namespace TODO
             Console.WriteLine(" -u [id] [description] Update task description");
         }
 
-        private static void CreateDatabase(string fileName, SQLiteConnection connection)
-        {
-            SQLiteConnection.CreateFile(fileName);
-            string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
-            using (connection)
-            {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(createTable, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-                connection.Close();
-            }
-        }
     }
 }

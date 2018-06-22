@@ -16,16 +16,18 @@ namespace TODO
         {
             connection = new SQLiteConnection($"Data Source={database}, Version 3");
             if (!File.Exists(database))
-                SQLiteConnection.CreateFile(database);
-            string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
-            using (connection)
             {
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(createTable, connection))
+                SQLiteConnection.CreateFile(database);
+                string createTable = "CREATE TABLE Todos(id INTEGER PRIMARY KEY AUTOINCREMENT, text VARCHAR NOT NULL, createdAt DATETIME NOT NULL, completedAt DATETIME)";
+                using (connection)
                 {
-                    command.ExecuteNonQuery();
+                    OpenConnection();
+                    using (SQLiteCommand command = new SQLiteCommand(createTable, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    CloseConnection();
                 }
-                connection.Close();
             }
         }
 
