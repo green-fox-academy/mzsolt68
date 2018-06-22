@@ -79,7 +79,7 @@ namespace TODO
                         todo.id = reader.GetInt32(0);
                         todo.text = reader.GetString(1);
                         todo.createdAt = reader.GetDateTime(2);
-                        todo.completedAt = reader["completedAt"] == DBNull.Value ? (DateTime?)null : reader.GetDateTime(3);
+                        todo.completedAt = reader.GetDateTime(3);
                         todoList.Add(todo);
                     }
                 }

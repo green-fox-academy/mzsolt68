@@ -11,7 +11,7 @@ namespace TODO
         public int id { get; set; }
         public string text { get; set; }
         public DateTime createdAt { get; set; }
-        public Nullable<DateTime> completedAt { get; set; }
+        public DateTime completedAt { get; set; }
 
         public Todo()
         { }
@@ -26,7 +26,8 @@ namespace TODO
 
         public override string ToString()
         {
-            return $"ID={id} text {text} created at {createdAt.Year}-{createdAt.Month}-{createdAt.Day} completed at {completedAt}";
+            string completed = (completedAt.Equals(DateTime.MinValue)) ? "not completed" : $"completed at {completedAt.Year}-{completedAt.Month}-{completedAt.Day}";
+            return $"ID={id} text {text} created at {createdAt.Year}-{createdAt.Month}-{createdAt.Day} {completed}";
         }
     }
 }
