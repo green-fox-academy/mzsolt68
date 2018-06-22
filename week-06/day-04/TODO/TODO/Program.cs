@@ -57,7 +57,6 @@ namespace TODO
             //
         }
 
-
         private static Todo Load(int id)
         {
             return null;

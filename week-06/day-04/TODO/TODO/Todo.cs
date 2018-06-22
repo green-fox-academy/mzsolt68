@@ -11,7 +11,7 @@ namespace TODO
         public int id { get; set; }
         public string text { get; set; }
         public DateTime createdAt { get; set; }
-        public DateTime? completedAt { get; set; }
+        public Nullable<DateTime> completedAt { get; set; }
 
         public Todo()
         { }
@@ -26,8 +26,7 @@ namespace TODO
 
         public override string ToString()
         {
-            string completed = (!completedAt.HasValue) ? "-" : completedAt.Value.ToString();
-            return $"ID={id} text {text} created at {createdAt.Year}-{createdAt.Month}-{createdAt.Day} completed at {completed}";
+            return $"ID={id} text {text} created at {createdAt.Year}-{createdAt.Month}-{createdAt.Day} completed at {completedAt}";
         }
     }
 }
