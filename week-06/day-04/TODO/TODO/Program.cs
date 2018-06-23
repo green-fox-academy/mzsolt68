@@ -36,6 +36,7 @@ namespace TODO
                     Complete(args);
                     break;
                 case "-u":
+                    Update(args);
                     break;
                 default:
                     break;
@@ -74,6 +75,26 @@ namespace TODO
         private static void Delete()
         {
             //
+        }
+
+        private static void Update(string[] args)
+        {
+            if(args.Length == 3)
+            {
+                int id;
+                if(int.TryParse(args[1], out id))
+                {
+                    db.UpdateTodo(id, args[2]);
+                }
+                else
+                {
+                    Console.WriteLine("Wrong todo ID format!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Not enough parameter!");
+            }
         }
 
         private static void Add(string[] args)
@@ -123,11 +144,11 @@ namespace TODO
             Console.WriteLine("Command Line TODO Application");
             Console.WriteLine("=============================");
             Console.WriteLine("\nCommand line arguments:");
-            Console.WriteLine(" -l\tLists all the tasks");
-            Console.WriteLine(" -a\tAdds a new task");
-            Console.WriteLine(" -r [id]\tRemoves a task");
-            Console.WriteLine(" -c [id]\tCompletes a task");
-            Console.WriteLine(" -u [id] [description] Update task description");
+            Console.WriteLine(" -l\t\t\tLists all the tasks");
+            Console.WriteLine(" -a\t\t\tAdds a new task");
+            Console.WriteLine(" -r [id]\t\tRemoves a task");
+            Console.WriteLine(" -c [id]\t\tCompletes a task");
+            Console.WriteLine(" -u [id] [description] \tUpdate task description");
         }
 
     }

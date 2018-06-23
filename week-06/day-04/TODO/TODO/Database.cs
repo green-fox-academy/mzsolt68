@@ -71,6 +71,26 @@ namespace TODO
             CloseConnection();
         }
 
+        internal void UpdateTodo(int id, string text)
+        {
+            OpenConnection();
+            if(IdIsValid(id))
+            {
+                commandText = "UPDATE Todos SET text = @text WHERE id = @id";
+                using (command = new SQLiteCommand(commandText, connection))
+                {
+                    command.Parameters.AddWithValue("@text", text);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    Console.WriteLine($"Todo Nr. {id} description is updated.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Todo Nr. {id} is not in the database.");
+            }
+        }
+
         public void ListAllTodos()
         {
             commandText = "SELECT * FROM todos";
@@ -104,7 +124,7 @@ namespace TODO
                     command.Parameters.AddWithValue("@completed", DateTime.Now);
                     command.Parameters.AddWithValue("@id", id);
                     command.ExecuteNonQuery();
-                    Console.WriteLine("Todo completed");
+                    Console.WriteLine($"Todo Nr. {id} is completed");
                 }
             }
             else
