@@ -49,7 +49,6 @@ namespace TODO
         private bool IdIsValid(int id)
         {
             commandText = "Select COUNT(1) FROM Todos WHERE id = @id";
-            OpenConnection();
             using (command = new SQLiteCommand(commandText, connection))
             {
                 command.Parameters.AddWithValue("@id", id);
@@ -102,10 +101,10 @@ namespace TODO
                 commandText = "UPDATE Todos SET completedAt = @completed WHERE id = @id";
                 using (command = new SQLiteCommand(commandText, connection))
                 {
-                        command.Parameters.AddWithValue("@completed", DateTime.Now);
-                        command.Parameters.AddWithValue("@id", id);
-                        command.ExecuteNonQuery();
-                        Console.WriteLine("Todo completed");
+                    command.Parameters.AddWithValue("@completed", DateTime.Now);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Todo completed");
                 }
             }
             else
