@@ -19,6 +19,7 @@ namespace TODO
         public Database(string database)
         {
             connection = new SQLiteConnection($"Data Source={database}, Version 3");
+            queryParameters = new Dictionary<string, object>();
             if (!File.Exists(database))
             {
                 SQLiteConnection.CreateFile(database);
@@ -26,14 +27,13 @@ namespace TODO
                 using (connection)
                 {
                     OpenConnection();
-                    using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
+                    using (command = new SQLiteCommand(commandText, connection))
                     {
                         command.ExecuteNonQuery();
                     }
                     CloseConnection();
                 }
             }
-            queryParameters = new Dictionary<string, object>();
         }
 
         private void OpenConnection()
@@ -105,8 +105,9 @@ namespace TODO
             }
         }
 
-        public void ListAllTodos()
+        public List<Todo> ListAllTodos()
         {
+            List<Todo> todos = new List<TODO.Todo>();
             commandText = "SELECT * FROM todos";
             OpenConnection();
             using (command = new SQLiteCommand(commandText, connection))
@@ -120,11 +121,12 @@ namespace TODO
                         todo.text = reader.GetString(1);
                         todo.createdAt = reader.GetDateTime(2);
                         todo.completedAt = reader.GetDateTime(3);
-                        Console.WriteLine(todo.ToString());
+                        todos.Add(todo);
                     }
                 }
             }
             CloseConnection();
+            return todos;
         }
 
         public void CompleteTodo(int id)
