@@ -133,5 +133,24 @@ namespace TODO
             }
             CloseConnection();
         }
+
+        public void DeleteTodo(int id)
+        {
+            OpenConnection();
+            if(IdIsValid(id))
+            {
+                commandText = "DELETE FROM Todos WHERE id = @id";
+                using (command = new SQLiteCommand(commandText, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    Console.WriteLine($"Todo Nr. {id} is deleted.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Todo Nr. {id} is not in the database.");
+            }
+        }
     }
 }

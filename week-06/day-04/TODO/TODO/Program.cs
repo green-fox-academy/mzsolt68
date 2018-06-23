@@ -31,6 +31,7 @@ namespace TODO
                     Add(args);
                     break;
                 case "-r":
+                    Delete(args);
                     break;
                 case "-c":
                     Complete(args);
@@ -72,9 +73,24 @@ namespace TODO
             return null;
         }
 
-        private static void Delete()
+        private static void Delete(string[] args)
         {
-            //
+            if(args.Length >= 2)
+            {
+                int id;
+                if (int.TryParse(args[1], out id))
+                {
+                    db.DeleteTodo(id);
+                }
+                else
+                {
+                    Console.WriteLine("Wrong todo ID format!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Not enough parameter!");
+            }
         }
 
         private static void Update(string[] args)
