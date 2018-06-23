@@ -14,6 +14,7 @@ namespace TODO
         SQLiteCommand command;
         SQLiteDataReader reader;
         string commandText;
+        Dictionary<string, object> queryParameters;
 
         public Database(string database)
         {
@@ -32,15 +33,16 @@ namespace TODO
                     CloseConnection();
                 }
             }
+            queryParameters = new Dictionary<string, object>();
         }
 
-        public void OpenConnection()
+        private void OpenConnection()
         {
             if (connection.State != System.Data.ConnectionState.Open)
                 connection.Open();
         }
 
-        public void CloseConnection()
+        private void CloseConnection()
         {
             if (connection.State != System.Data.ConnectionState.Closed)
                 connection.Close();
@@ -48,46 +50,56 @@ namespace TODO
 
         private bool IdIsValid(int id)
         {
+            int tmp;
             commandText = "Select COUNT(1) FROM Todos WHERE id = @id";
+            OpenConnection();
             using (command = new SQLiteCommand(commandText, connection))
             {
                 command.Parameters.AddWithValue("@id", id);
-                return (Convert.ToInt32(command.ExecuteScalar()) == 1) ? true : false;
+                tmp = Convert.ToInt32(command.ExecuteScalar());
             }
+            CloseConnection();
+            return  (tmp == 1) ? true : false;
+        }
+
+        private void NonQueryCommand()
+        {
+            OpenConnection();
+            using (command = new SQLiteCommand(commandText, connection))
+            {
+                foreach (KeyValuePair<string, object> param in queryParameters)
+                {
+                    command.Parameters.AddWithValue(param.Key, param.Value);
+                }
+                command.ExecuteNonQuery();
+            }
+            CloseConnection();
+            queryParameters.Clear();
         }
 
         public void AddNewTodo(Todo todo)
         {
             commandText = "Insert INTO todos (text, createdAt, completedAt) VALUES(@text, @created, @completed)";
-            OpenConnection();
-            using (command = new SQLiteCommand(commandText, connection))
-            {
-                command.Parameters.AddWithValue("@text", todo.text);
-                command.Parameters.AddWithValue("@created", todo.createdAt);
-                command.Parameters.AddWithValue("@completed", todo.completedAt);
-                command.ExecuteNonQuery();
-                Console.WriteLine("Todo added");
-            }
-            CloseConnection();
+            queryParameters.Add("@text", todo.text);
+            queryParameters.Add("@created", todo.createdAt);
+            queryParameters.Add("@completed", todo.completedAt);
+            NonQueryCommand();
+            Console.WriteLine($"New task \"{todo.text}\" is added.");
         }
 
         internal void UpdateTodo(int id, string text)
         {
-            OpenConnection();
             if(IdIsValid(id))
             {
                 commandText = "UPDATE Todos SET text = @text WHERE id = @id";
-                using (command = new SQLiteCommand(commandText, connection))
-                {
-                    command.Parameters.AddWithValue("@text", text);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    Console.WriteLine($"Todo Nr. {id} description is updated.");
-                }
+                queryParameters.Add("@id", id);
+                queryParameters.Add("@text", text);
+                NonQueryCommand();
+                Console.WriteLine($"Task Nr. {id} description is updated.");
             }
             else
             {
-                Console.WriteLine($"Todo Nr. {id} is not in the database.");
+                Console.WriteLine($"Task Nr. {id} is not in the database.");
             }
         }
 
@@ -115,41 +127,32 @@ namespace TODO
 
         public void CompleteTodo(int id)
         {
-            OpenConnection();
             if (IdIsValid(id))
             {
                 commandText = "UPDATE Todos SET completedAt = @completed WHERE id = @id";
-                using (command = new SQLiteCommand(commandText, connection))
-                {
-                    command.Parameters.AddWithValue("@completed", DateTime.Now);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    Console.WriteLine($"Todo Nr. {id} is completed");
-                }
+                queryParameters.Add("@id", id);
+                queryParameters.Add("@completed", DateTime.Now);
+                NonQueryCommand();
+                Console.WriteLine($"Task Nr. {id} is completed");
             }
             else
             {
-                Console.WriteLine($"Todo Nr. {id} is not in the database.");
+                Console.WriteLine($"Task Nr. {id} is not in the database.");
             }
-            CloseConnection();
         }
 
         public void DeleteTodo(int id)
         {
-            OpenConnection();
             if(IdIsValid(id))
             {
                 commandText = "DELETE FROM Todos WHERE id = @id";
-                using (command = new SQLiteCommand(commandText, connection))
-                {
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
-                    Console.WriteLine($"Todo Nr. {id} is deleted.");
-                }
+                queryParameters.Add("@id", id);
+                NonQueryCommand();
+                Console.WriteLine($"Task Nr. {id} is deleted.");
             }
             else
             {
-                Console.WriteLine($"Todo Nr. {id} is not in the database.");
+                Console.WriteLine($"Task Nr. {id} is not in the database.");
             }
         }
     }
