@@ -42,14 +42,6 @@ namespace TODO
             }
         }
 
-        private static void ListTodos()
-        {
-            foreach (var todo in todoList)
-            {
-                Console.WriteLine(todo.ToString());
-            }
-        }
-
         private static void Complete(string[] args)
         {
             int id;
