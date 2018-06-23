@@ -25,7 +25,8 @@ namespace TODO
             switch (args[0])
             {
                 case "-l":
-                    db.ListAllTodos();
+                    todoList = db.ListAllTodos();
+                    PrintTodos(todoList);
                     break;
                 case "-a":
                     Add(args);
@@ -44,6 +45,14 @@ namespace TODO
             }
         }
 
+        private static void PrintTodos(List<Todo> todolist)
+        {
+            foreach (var todo in todolist)
+            {
+                Console.WriteLine(todo.ToString());
+            }
+        }
+
         private static void Complete(string[] args)
         {
             int id;
@@ -56,11 +65,6 @@ namespace TODO
             {
                 db.CompleteTodo(id);
             }
-        }
-
-        private static void Save(Todo todo)
-        {
-            //
         }
 
         private static Todo Load(int id)
