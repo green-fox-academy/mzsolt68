@@ -59,7 +59,13 @@ namespace TODO
                 tmp = Convert.ToInt32(command.ExecuteScalar());
             }
             CloseConnection();
-            return  (tmp == 1) ? true : false;
+            if (tmp == 1)
+                return true;
+            else
+            {
+                Console.WriteLine($"Task Nr. {id} is not in the database.");
+                return false;
+            }
         }
 
         private void NonQueryCommand()
@@ -97,10 +103,6 @@ namespace TODO
                 NonQueryCommand();
                 Console.WriteLine($"Task Nr. {id} description is updated.");
             }
-            else
-            {
-                Console.WriteLine($"Task Nr. {id} is not in the database.");
-            }
         }
 
         public void ListAllTodos()
@@ -135,10 +137,6 @@ namespace TODO
                 NonQueryCommand();
                 Console.WriteLine($"Task Nr. {id} is completed");
             }
-            else
-            {
-                Console.WriteLine($"Task Nr. {id} is not in the database.");
-            }
         }
 
         public void DeleteTodo(int id)
@@ -149,10 +147,6 @@ namespace TODO
                 queryParameters.Add("@id", id);
                 NonQueryCommand();
                 Console.WriteLine($"Task Nr. {id} is deleted.");
-            }
-            else
-            {
-                Console.WriteLine($"Task Nr. {id} is not in the database.");
             }
         }
     }
