@@ -16,12 +16,12 @@ namespace TODO
         static void Main(string[] args)
         {
             string databaseFile = "Todo.sqlite";
+            db = new Database(databaseFile);
             if (args.Length == 0)
             {
                 PrintUsage();
                 Environment.Exit(0);
             }
-            db = new Database(databaseFile);
             switch (args[0])
             {
                 case "-l":

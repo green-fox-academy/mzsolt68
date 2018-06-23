@@ -18,7 +18,7 @@ namespace TODO
 
         public Database(string database)
         {
-            connection = new SQLiteConnection($"Data Source={database}, Version 3");
+            connection = new SQLiteConnection($"Data Source={database}; Version=3");
             queryParameters = new Dictionary<string, object>();
             if (!File.Exists(database))
             {
