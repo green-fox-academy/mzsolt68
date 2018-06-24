@@ -56,15 +56,18 @@ namespace TODO
         private static void Complete(string[] args)
         {
             int id;
-
+            DateTime completed = DateTime.Now;
             if ((args.Length < 2) || (!int.TryParse(args[1], out id)))
             {
                 Console.WriteLine("Missing or wrong id.");
+                return;
             }
-            else
+            if ((args.Length == 3) && (!DateTime.TryParse(args[2], out completed)))
             {
-                db.CompleteTodo(id);
+                Console.WriteLine("Wrong date format!");
+                return;
             }
+            db.CompleteTodo(id, completed);
         }
 
         private static Todo Load(int id)

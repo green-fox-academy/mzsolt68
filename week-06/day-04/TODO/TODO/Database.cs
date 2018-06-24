@@ -129,15 +129,35 @@ namespace TODO
             return todos;
         }
 
-        public void CompleteTodo(int id)
+        public void CompleteTodo(int id, DateTime completed)
         {
+            DateTime created = DateTime.MinValue;
             if (IdIsValid(id))
             {
-                commandText = "UPDATE Todos SET completedAt = @completed WHERE id = @id";
-                queryParameters.Add("@id", id);
-                queryParameters.Add("@completed", DateTime.Now);
-                NonQueryCommand();
-                Console.WriteLine($"Task Nr. {id} is completed");
+                commandText = "SELECT createdAt FROM Todos WHERE id = @id";
+                OpenConnection();
+                using (command = new SQLiteCommand(commandText, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    using (reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            created = reader.GetDateTime(0);
+                    }
+                }
+                CloseConnection();
+                if (completed.Date >= created.Date)
+                {
+                    commandText = "UPDATE Todos SET completedAt = @completed WHERE id = @id";
+                    queryParameters.Add("@id", id);
+                    queryParameters.Add("@completed", completed);
+                    NonQueryCommand();
+                    Console.WriteLine($"Task Nr. {id} is completed");
+                }
+                else
+                {
+                    Console.WriteLine("Completition date is earlier than creation date!");
+                }
             }
         }
 
