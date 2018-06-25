@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{44DE2E96-956E-473F-865D-EECFA03BC68A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE9051F1-AD61-4B6E-ABDB-39ECE82D8271}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GreetDifferentLanguages", "src\GreetDifferentLanguages\GreetDifferentLanguages.xproj", "{B8EBF77E-8A98-4D4B-B3DB-128E66036896}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8EBF77E-8A98-4D4B-B3DB-128E66036896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8EBF77E-8A98-4D4B-B3DB-128E66036896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8EBF77E-8A98-4D4B-B3DB-128E66036896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8EBF77E-8A98-4D4B-B3DB-128E66036896}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8EBF77E-8A98-4D4B-B3DB-128E66036896} = {44DE2E96-956E-473F-865D-EECFA03BC68A}
+	EndGlobalSection
+EndGlobal
