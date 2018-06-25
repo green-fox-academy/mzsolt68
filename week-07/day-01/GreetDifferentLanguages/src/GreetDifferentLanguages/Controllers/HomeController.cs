@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using GreetDifferentLanguages.Models;
 
 namespace GreetDifferentLanguages.Controllers
 {
@@ -34,7 +35,8 @@ namespace GreetDifferentLanguages.Controllers
 
         public IActionResult Greet()
         {
-            return View();
+            var greetings = new Greetings();
+            return View(greetings);
         }
     }
 }
