@@ -31,5 +31,10 @@ namespace GreetDifferentLanguages.Controllers
         {
             return View();
         }
+
+        public IActionResult Greet()
+        {
+            return View();
+        }
     }
 }
