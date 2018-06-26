@@ -1,0 +1,12 @@
+﻿@model BankOfSimba2017.Models.BankAccount
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Account</h2>
+<p>
+    Name: @Model.Name <br />
+    Balance: @String.Format("{0:N2}", Model.Balance) <br />
+    Type: @Model.AnimalType <br />
+</p>

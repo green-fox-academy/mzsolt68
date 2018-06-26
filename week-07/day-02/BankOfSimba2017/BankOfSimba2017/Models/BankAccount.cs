@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BankOfSimba.Models
+namespace BankOfSimba2017.Models
 {
     public class BankAccount
     {

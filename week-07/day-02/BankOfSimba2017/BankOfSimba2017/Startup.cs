@@ -39,6 +39,8 @@ namespace BankOfSimba2017
 
             app.UseStaticFiles();
 
+            app.UseMvcWithDefaultRoute();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
