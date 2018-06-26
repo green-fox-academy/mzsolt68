@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D65FB2F-A979-44DE-9237-62B2BE31D1C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E99DE88A-C8CE-48B2-92B4-D58047043E04}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BankOfSimba", "src\BankOfSimba\BankOfSimba.xproj", "{AD864F6F-AB3E-4F55-A66E-1A500579F80A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD864F6F-AB3E-4F55-A66E-1A500579F80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD864F6F-AB3E-4F55-A66E-1A500579F80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD864F6F-AB3E-4F55-A66E-1A500579F80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD864F6F-AB3E-4F55-A66E-1A500579F80A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD864F6F-AB3E-4F55-A66E-1A500579F80A} = {5D65FB2F-A979-44DE-9237-62B2BE31D1C6}
+	EndGlobalSection
+EndGlobal
