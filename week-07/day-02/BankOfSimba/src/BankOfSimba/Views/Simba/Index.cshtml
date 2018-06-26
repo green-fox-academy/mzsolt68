@@ -1,3 +1,5 @@
 ﻿@model BankOfSimba.Models.BankAccount
 
-<p>@Model.Name @Model.Balance @Model.AnimalType</p>
+<p>Account holder: @Model.Name<br />
+   Balance: @String.Format("{0:N2}", Model.Balance) Zebra<br />
+   Type: @Model.AnimalType</p>
