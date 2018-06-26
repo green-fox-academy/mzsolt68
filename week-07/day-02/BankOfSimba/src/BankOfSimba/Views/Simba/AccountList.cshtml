@@ -2,18 +2,31 @@
 
 <table>
     <thead>
-        <tr>
+        <tr style="background-color:antiquewhite">
+            <td>ID</td>
             <td>Name</td>
             <td>Balance</td>
             <td>Type</td>
         </tr>
     </thead>
-        @foreach (var account in Model.AccountList)
+    @{int i = 1;
+        string backColor;} 
+    @foreach (var account in Model.AccountList)
+    {
+        if(i % 2 == 0)
         {
-            <tr>
-                <td width="150">@account.Name</td>
-                <td width="100">@account.Balance</td>
-                <td width="100">@account.AnimalType</td>
-            </tr>
+            backColor = "aqua";
         }
+        else
+        {
+            backColor = "white";
+        }
+        <tr style="background-color:@backColor">
+            <td width="30">@i</td>
+            <td width="150">@account.Name</td>
+            <td width="100">@account.Balance</td>
+            <td width="100">@account.AnimalType</td>
+        </tr>
+        i++;
+    }
 </table>
