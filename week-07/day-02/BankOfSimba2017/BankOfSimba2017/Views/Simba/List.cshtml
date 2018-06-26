@@ -1,0 +1,38 @@
+﻿@model List<BankAccount>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+<table>
+    <thead>
+        <tr style="background-color:antiquewhite">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Balance</td>
+            <td>Type</td>
+        </tr>
+    </thead>
+    @{int i = 1;
+        string backColor;}
+    @foreach (var account in Model)
+    {
+        if (i % 2 == 0)
+        {
+            backColor = "aqua";
+        }
+        else
+        {
+            backColor = "white";
+        }
+        <tr style="background-color:@backColor">
+            <td width="30">@i</td>
+            <td width="150">@account.Name</td>
+            <td width="100">@account.Balance</td>
+            <td width="100">@account.AnimalType</td>
+        </tr>
+        i++;
+    }
+</table>

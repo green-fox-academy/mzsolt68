@@ -14,5 +14,6 @@ namespace BankOfSimba2017.Models
         public string Name { get; set; }
         public int Balance { get; set; }
         public Animal AnimalType { get; set; }
+        public bool IsKIng { get; set; }
     }
 }
