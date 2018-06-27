@@ -8,17 +8,20 @@ namespace Counter.Controllers
 {
     public class CounterController : Controller
     {
+        private int number = 0;
+
         [HttpGet]
         [Route("/")]
         public IActionResult Index()
         {
-            return View();
+            return View(number);
         }
 
         [HttpPost]
         [Route("/")]
         public IActionResult AddOneNumber()
         {
+            number++;
             return RedirectToAction("Index");
         }
     }
