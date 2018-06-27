@@ -7,7 +7,7 @@ namespace Counter.Services
 {
     public interface ICounter
     {
-        int GetNUmber();
+        int GetNumber();
         void Increase();
     }
 }

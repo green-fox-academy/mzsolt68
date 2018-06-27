@@ -9,7 +9,7 @@ namespace Counter.Services
     {
         private int Clicks = 0;
 
-        public int GetNUmber()
+        public int GetNumber()
         {
             return Clicks;
         }
