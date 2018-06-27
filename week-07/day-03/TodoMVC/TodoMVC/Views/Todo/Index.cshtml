@@ -12,6 +12,7 @@
             <td>Szöveg</td>
             <td>Létrehozva</td>
             <td>Lezárva</td>
+            <td>Sürgős</td>
         </tr>
     </thead>
     @foreach (Todo task in Model)
@@ -21,6 +22,9 @@
             <td width="200">@task.Text</td>
             <td width="150">@task.Created.Date</td>
             <td width="150">@task.Completed.Date</td>
+            <td width="20" style="text-align:center; vertical-align:middle">
+                <input type="checkbox" name="IsUrgent" checked="@task.IsUrgent"/>
+            </td>
         </tr>
 
     }

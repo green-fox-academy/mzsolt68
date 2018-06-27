@@ -7,9 +7,9 @@
 <h2>Add new task</h2>
 
 <form action="/GetTodo" method="post">
-    <input type="number" name="ID" />
     <input type="text" name="Text" />
     <input type="date" name="Created" />
     <input type="date" name="Completed" />
+    <input type="checkbox" name="IsUrgent" value="true"/>
     <button type="submit">Add to list</button>
 </form>

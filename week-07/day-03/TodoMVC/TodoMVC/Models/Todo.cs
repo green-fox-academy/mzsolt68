@@ -11,5 +11,6 @@ namespace TodoMVC.Models
         public string Text { get; set; }
         public DateTime Created { get; set; }
         public DateTime Completed { get; set; }
+        public bool IsUrgent { get; set; }
     }
 }

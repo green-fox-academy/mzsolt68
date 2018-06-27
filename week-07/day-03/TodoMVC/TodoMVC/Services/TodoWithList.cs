@@ -8,20 +8,21 @@ namespace TodoMVC.Services
 {
     public class TodoWithList : TodoRepo
     {
+        private int count = 1;
         private List<Todo> taskList;
 
         public TodoWithList()
         {
-            taskList = new List<Todo>
-            {
-                new Todo{ID = 1, Text = "Feed the dog", Created = DateTime.Parse("2018-06-27")},
-                new Todo{ID = 2, Text = "Clean the garage", Created = DateTime.Parse("2018-05-31"), Completed = DateTime.Parse("2018.06.25")}
-            };
+            taskList = new List<Todo>();
+            AddTodo(new Todo { Text = "Feed the dog", Created = DateTime.Parse("2018-06-27"), IsUrgent = true });
+            AddTodo(new Todo { Text = "Clean the garage", Created = DateTime.Parse("2018-05-31"), Completed = DateTime.Parse("2018.06.25") });
         }
 
         public override void AddTodo(Todo task)
         {
+            task.ID = count;
             taskList.Add(task);
+            count++;
         }
 
         public override void DeleteTodo(Todo task)
