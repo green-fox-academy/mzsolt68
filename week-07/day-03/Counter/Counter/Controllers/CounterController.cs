@@ -14,5 +14,12 @@ namespace Counter.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [Route("/")]
+        public IActionResult AddOneNumber()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
