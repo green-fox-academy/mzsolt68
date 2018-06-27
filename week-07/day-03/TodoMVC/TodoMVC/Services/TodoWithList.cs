@@ -21,7 +21,7 @@ namespace TodoMVC.Services
 
         public override void AddTodo(Todo task)
         {
-            throw new NotImplementedException();
+            taskList.Add(task);
         }
 
         public override void DeleteTodo(Todo task)

@@ -1,0 +1,31 @@
+﻿@model List<Todo>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tasklist</h2>
+<table>
+    <thead>
+        <tr style="background-color:lightgray">
+            <td>ID</td>
+            <td>Szöveg</td>
+            <td>Létrehozva</td>
+            <td>Lezárva</td>
+        </tr>
+    </thead>
+    @foreach (Todo task in Model)
+    {
+        <tr>
+            <td width="20">@task.ID</td>
+            <td width="200">@task.Text</td>
+            <td width="150">@task.Created.Date</td>
+            <td width="150">@task.Completed.Date</td>
+        </tr>
+
+    }
+</table>
+<form action="/" method="post">
+    <button type="submit">Add new task</button>
+</form>
+

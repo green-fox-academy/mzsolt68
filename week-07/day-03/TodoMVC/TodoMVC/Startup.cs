@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TodoMVC.Services;
 
 namespace TodoMVC
 {
@@ -22,6 +23,7 @@ namespace TodoMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<TodoRepo, TodoWithList>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +40,8 @@ namespace TodoMVC
             }
 
             app.UseStaticFiles();
+
+            app.UseMvcWithDefaultRoute();
 
             app.UseMvc(routes =>
             {
