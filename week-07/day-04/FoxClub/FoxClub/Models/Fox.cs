@@ -11,5 +11,10 @@ namespace FoxClub.Models
         public List<string> KnownTricks { get; set; }
         public string Food { get; set; }
         public string Drink { get; set; }
+
+        public Fox()
+        {
+            KnownTricks = new List<string>();
+        }
     }
 }

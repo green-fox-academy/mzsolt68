@@ -5,34 +5,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FoxClub.Models;
+using FoxClub.Services;
 
-namespace FoxClub.Controllers
+namespace FoxClub.Services
 {
     public class HomeController : Controller
     {
+        private IFoxRepo foxes;
+
+        public HomeController(IFoxRepo repo)
+        {
+            this.foxes = repo;
+        }
+
         public IActionResult Index(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
-                return RedirectToAction("login");
+                return RedirectToAction("login", new {Name = name });
             }
             else
             {
-                return View();
+                if (foxes.IsFoxExists(name))
+                    return View(foxes.SelectFox(name));
+                else
+                    return RedirectToAction("login", new { Name = name });
             }
         }
 
         [HttpGet("/login")]
-        public IActionResult Login()
+        public IActionResult Login(string name)
         {
+            ViewData["Name"] = name;
             return View();
         }
 
-        //[HttpPost("/")]
-        //public IActionResult Index(string Name)
-        //{
-        //    return View();
-        //}
+        [HttpGet("/AddFox")]
+        public IActionResult AddFox(string name)
+        {
+            foxes.AddFox(name);
+            return RedirectToAction("Index", new {Name = name });
+        }
 
         public IActionResult About()
         {

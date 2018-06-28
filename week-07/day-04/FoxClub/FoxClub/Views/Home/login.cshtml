@@ -1,4 +1,4 @@
-﻿
+﻿@model object
 @{
     ViewData["Title"] = "login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,11 @@
 
 <h2>Welcome to Programmer Fox Club!</h2>
 <p>Please provide a name, so you can associate it to your pet!</p>
-<form action="/" method="get">
+@if(!string.IsNullOrEmpty((string)ViewData["Name"]))
+{
+    <p style="color:red">You have provided a name that has not been used before, add it as a new one!</p>
+}
+<form action="/AddFox" method="get">
     Name: <input type="text" name="Name" />
     <button type="submit">GO</button>
 </form>
