@@ -15,6 +15,12 @@ namespace FoxClub.Controllers
             return View();
         }
 
+        [HttpGet("/login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
