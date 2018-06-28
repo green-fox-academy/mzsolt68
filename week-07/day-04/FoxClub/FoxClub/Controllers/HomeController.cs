@@ -10,9 +10,16 @@ namespace FoxClub.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name)
         {
-            return View();
+            if (string.IsNullOrEmpty(name))
+            {
+                return RedirectToAction("login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet("/login")]
@@ -20,6 +27,12 @@ namespace FoxClub.Controllers
         {
             return View();
         }
+
+        //[HttpPost("/")]
+        //public IActionResult Index(string Name)
+        //{
+        //    return View();
+        //}
 
         public IActionResult About()
         {
