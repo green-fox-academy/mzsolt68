@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "nutritionStore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nutrition Store</h2>
+<ul>
+    <li><a href="/?Name=@ViewData["Name"]">Information</a></li>
+    <li><a href="/nutritionstore?Name=@ViewData["Name"]">Nutrition Center</a></li>
+    <li><a href="/trickcenter?Name=@ViewData["Name"]">Trick Center</a></li>
+</ul>
+<p>
+    <form action="AddNutrition" method="get">
+        <input type="hidden" name="Name" value="@ViewData["Name"]" />
+        Food: 
+        <select name="Food">
+            <option value="pizza">Pizza</option>
+            <option value="salad">Salad</option>
+            <option value="pasta">Pasta</option>
+            <option value="soup">Soup</option>
+        </select>
+         Drink: 
+        <select name="Drink">
+            <option value="lemonade">Lemonade</option>
+            <option value="water">Water</option>
+            <option value="beer">Beer</option>
+            <option value="orange juice">Orange Juice</option>
+        </select>
+        <button type="submit">Change</button>
+    </form>
+</p>
