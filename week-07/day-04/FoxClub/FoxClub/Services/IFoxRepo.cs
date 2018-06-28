@@ -11,5 +11,6 @@ namespace FoxClub.Services
         Fox SelectFox(string name);
         bool IsFoxExists(string name);
         void AddFox(string name);
+        void LearnTrick(string name, string trick);
     }
 }

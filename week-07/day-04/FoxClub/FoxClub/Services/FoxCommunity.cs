@@ -27,6 +27,12 @@ namespace FoxClub.Services
             return foxList.Exists(f => f.Name == name);
         }
 
+        public void LearnTrick(string name, string trick)
+        {
+            Fox fox = foxList.Where(f => f.Name == name).SingleOrDefault();
+            fox.KnownTricks.Add(trick);
+        }
+
         public Fox SelectFox(string name)
         {
             Fox fox = foxList.Where(f => f.Name == name).SingleOrDefault();

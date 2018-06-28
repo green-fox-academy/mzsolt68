@@ -47,6 +47,13 @@ namespace FoxClub.Services
             return RedirectToAction("Index", new {Name = name });
         }
 
+        [HttpGet("/trickcenter")]
+        public IActionResult TrickCenter(string name)
+        {
+            ViewData["Name"] = name;
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
