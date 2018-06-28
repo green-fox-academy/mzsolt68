@@ -54,6 +54,13 @@ namespace FoxClub.Services
             return View();
         }
 
+        [HttpGet("/AddTrick")]
+        public IActionResult AddTrick(string name, string trick)
+        {
+            foxes.LearnTrick(name, trick);
+            return RedirectToAction("Index", new { Name = name });
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

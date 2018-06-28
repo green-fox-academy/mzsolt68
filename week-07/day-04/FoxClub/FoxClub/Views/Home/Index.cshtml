@@ -10,7 +10,8 @@
     <li><a href="/trickcenter?Name=@Model.Name">Trick Center</a></li>
 </ul>
 <p><img src="/images/greenfox.png" /></p>
-<p>This is @Model.Name. Currently living on @Model.Food and @Model.Drink.
+<p>
+    This is @Model.Name. Currently living on @Model.Food and @Model.Drink.
 
     @if (Model.KnownTricks.Count == 0)
     {
@@ -19,7 +20,13 @@
     else
     {
         <div>He knows @Model.KnownTricks.Count tricks.</div>
+        <p><h1>Known tricks</h1></p>
+        foreach (string trick in Model.KnownTricks)
+        {
+            <ul>
+                <li>@trick</li>
+            </ul>
+        }
     }
     </p>
-<p><h1>Known tricks</h1></p>
 
