@@ -51,11 +51,11 @@ namespace FoxClub.Services
         public IActionResult TrickCenter(string name)
         {
             ViewData["Name"] = name;
-            return View();
+            return View(foxes.GetTrickList());
         }
 
         [HttpGet("/AddTrick")]
-        public IActionResult AddTrick(string name, string trick)
+        public IActionResult AddTrick(string name, int trick)
         {
             foxes.LearnTrick(name, trick);
             return RedirectToAction("Index", new { Name = name });

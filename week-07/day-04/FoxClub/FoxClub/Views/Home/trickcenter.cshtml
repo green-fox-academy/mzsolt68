@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Trick>
 @{
     ViewData["Title"] = "trickcenter";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,15 +10,17 @@
     <li><a href="/nutritionstore?Name=@ViewData["Name"]">Nutrition Center</a></li>
     <li><a href="/trickcenter?Name=@ViewData["Name"]">Trick Center</a></li>
 </ul>
-<p>
+<div>
     <form action="/Addtrick" method="get">
         Tricks: 
         <input type="hidden" name="Name" value="@ViewData["Name"]" />
         <select name="Trick">
-            <option value="Write HTML">Write HTML</option>
-            <option value="Draw foxes">Draw foxes</option>
-            <option value="Dance hip-hop">Dance hip-hop</option>
+            @foreach(var trick in Model)
+            {
+                <option value="@trick.ID">@trick.Description</option>
+
+            }
         </select>
         <button type="submit">Learn</button>
     </form>
-</p>
+</div>
