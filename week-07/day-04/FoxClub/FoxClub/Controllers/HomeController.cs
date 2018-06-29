@@ -22,7 +22,7 @@ namespace FoxClub.Services
         {
             if (string.IsNullOrEmpty(name))
             {
-                return RedirectToAction("login", new {Name = name });
+                return RedirectToAction("login");
             }
             else
             {
