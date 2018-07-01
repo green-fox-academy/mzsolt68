@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoxClub.Services
 {
-    public interface IFoxRepo
+    public interface ITrickRepo
     {
-        Fox SelectFox(string name);
-        bool IsFoxExists(string name);
-        void AddFox(string name);
+        List<Trick> GetTrickList();
+        Trick GetTrick(int trickID);
     }
 }

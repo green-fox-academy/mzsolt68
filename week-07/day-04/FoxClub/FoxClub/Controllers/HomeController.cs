@@ -18,7 +18,7 @@ namespace FoxClub.Services
             this.foxes = repo;
         }
 
-        public IActionResult Index(string name)
+        public IActionResult Index(string name, int trick)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -47,18 +47,11 @@ namespace FoxClub.Services
             return RedirectToAction("Index", new {Name = name });
         }
 
-        [HttpGet("/trickcenter")]
-        public IActionResult TrickCenter(string name)
+        public IActionResult AddTrickTo(string name, int newtrick)
         {
-            ViewData["Name"] = name;
-            return View(foxes.GetTrickList());
-        }
-
-        [HttpGet("/AddTrick")]
-        public IActionResult AddTrick(string name, int trick)
-        {
-            foxes.LearnTrick(name, trick);
-            return RedirectToAction("Index", new { Name = name });
+            Fox fox = foxes.SelectFox(name);
+            fox.LearnTrick(newtrick);
+            return RedirectToAction("Index", new { Name = fox.Name });
         }
 
         [HttpGet("/nutritionStore")]

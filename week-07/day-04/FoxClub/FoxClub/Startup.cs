@@ -24,6 +24,7 @@ namespace FoxClub
         {
             services.AddMvc();
             services.AddSingleton<IFoxRepo, FoxCommunity>();
+            services.AddSingleton<ITrickRepo, TrickCenter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
