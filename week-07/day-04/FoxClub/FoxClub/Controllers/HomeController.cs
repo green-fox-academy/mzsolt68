@@ -54,15 +54,7 @@ namespace FoxClub.Services
             return RedirectToAction("Index", new { Name = fox.Name });
         }
 
-        [HttpGet("/nutritionStore")]
-        public IActionResult NutritionStore(string name)
-        {
-            ViewData["Name"] = name;
-            return View();
-        }
-
-        [HttpGet("/AddNutrition")]
-        public IActionResult AddNutrition(string name, string food, string drink)
+        public IActionResult ChangeNutrition(string name, string food, string drink)
         {
             Fox fox = foxes.SelectFox(name);
             fox.Food = food;
