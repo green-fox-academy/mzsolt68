@@ -8,13 +8,16 @@ namespace PokerDojo
 {
     public class PokerEval
     {
-        public enum Rank : int { T = 10, J, Q, K, A  };
+        public enum Rank : int { T = 10, J, Q, K, A  }
+        public enum HandType : int { RoyalFlush, StraightFlush, FourOfAKInd, FullHouse, Flush, Straight, ThreeOfAKind, TwoPairs, OnePair, HighCard }
+
         public string Evaluate(string[] black, string[] white)
         {
             if ( (GroupByRank(black, 5) != 0) || (GroupByRank(white, 5) != 0))
                 return "Hiba";
             if (HasDuplicates(black, white))
                 return "Hiba";
+
             return "";
         }
 
@@ -38,5 +41,32 @@ namespace PokerDojo
             return false;
         }
 
+        public bool IsValid(HandType handtype, string[] hand)
+        {
+            switch (handtype)
+            {
+                case HandType.RoyalFlush:
+                    break;
+                case HandType.StraightFlush:
+                    break;
+                case HandType.FourOfAKInd:
+                    break;
+                case HandType.FullHouse:
+                    break;
+                case HandType.Flush:
+                    return GroupBySuit(hand, 5) == 1;
+                case HandType.Straight:
+                    break;
+                case HandType.ThreeOfAKind:
+                    break;
+                case HandType.TwoPairs:
+                    break;
+                case HandType.OnePair:
+                    break;
+                case HandType.HighCard:
+                    break;
+            }
+            return false;
+        }
     }
 }

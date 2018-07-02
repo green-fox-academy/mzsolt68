@@ -26,5 +26,14 @@ namespace PokerDojo.Test
             string result = eval.Evaluate(black, white);
             Assert.AreEqual(result, "Hiba");
         }
+
+        [Test]
+        public void ShouldReturnWhiteFlush()
+        {
+            string[] black = { "2H", "3D", "KD", "AH", "TC" };
+            string[] white = { "3S", "4S", "5S", "2S", "4S" };
+            bool result = eval.IsValid(PokerEval.HandType.Flush, white);
+            Assert.AreEqual(result, true);
+        }
     }
 }
