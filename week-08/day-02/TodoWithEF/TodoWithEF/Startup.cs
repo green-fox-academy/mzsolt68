@@ -27,7 +27,7 @@ namespace TodoWithEF
             var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Todo;Integrated Security=True";
             services.AddMvc();
             services.AddDbContext<TodoContext>(options => options.UseSqlServer(connectionString));
-            services.AddTransient<TodoContext>();
+            services.AddTransient<ITodoRepository, TodoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

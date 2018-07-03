@@ -12,17 +12,16 @@ namespace TodoWithEF.Controllers
     [Route("/list")]
     public class TodoController : Controller
     {
-        //private ITodoRepository todoRepository;
-        private TodoContext dbContext;
+        private ITodoRepository todoRepository;
 
-        public TodoController(TodoContext context)
+        public TodoController(ITodoRepository repository)
         {
-            dbContext = context;
+            todoRepository = repository;
         }
 
         public IActionResult Index()
         {
-            return View(dbContext.Todos.ToList());
+            return View(todoRepository.ListAllTodo());
         }
     }
 }
