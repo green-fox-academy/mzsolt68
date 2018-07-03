@@ -10,9 +10,7 @@ namespace TodoWithEF.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        [DefaultValue(false)]
         public bool IsUrgent { get; set; }
-        [DefaultValue(false)]
         public bool IsDone { get; set; }
     }
 }
