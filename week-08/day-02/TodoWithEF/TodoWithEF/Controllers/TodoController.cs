@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TodoWithEF.Repositories;
 using TodoWithEF.Services;
 
 namespace TodoWithEF.Controllers
@@ -11,16 +12,17 @@ namespace TodoWithEF.Controllers
     [Route("/list")]
     public class TodoController : Controller
     {
-        private ITodoRepository todoRepository;
+        //private ITodoRepository todoRepository;
+        private TodoContext dbContext;
 
-        public TodoController(ITodoRepository repository)
+        public TodoController(TodoContext context)
         {
-            todoRepository = repository;
+            dbContext = context;
         }
 
         public IActionResult Index()
         {
-            return View(todoRepository.ListAllTodo());
+            return View(dbContext.Todos.ToList());
         }
     }
 }
