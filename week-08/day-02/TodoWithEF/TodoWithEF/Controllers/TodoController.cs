@@ -11,16 +11,16 @@ namespace TodoWithEF.Controllers
     [Route("/list")]
     public class TodoController : Controller
     {
-        TodoRepository todoRepository;
+        private ITodoRepository todoRepository;
 
-        public TodoController(TodoRepository repository)
+        public TodoController(ITodoRepository repository)
         {
             todoRepository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(todoRepository.ListAllTodo());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Todo>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,4 +6,11 @@
 
 <h2>Index</h2>
 
-<h1>This is my first todo</h1>
+<h1>Todos for the day</h1>
+@foreach(var todo in Model)
+{
+    <ul>
+        <li>@todo.Title</li>
+    </ul>
+
+}

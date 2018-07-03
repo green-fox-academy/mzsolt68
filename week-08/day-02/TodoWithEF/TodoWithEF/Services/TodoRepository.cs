@@ -7,14 +7,9 @@ using TodoWithEF.Models;
 
 namespace TodoWithEF.Services
 {
-    public class TodoRepository
+    public class TodoRepository : ITodoRepository
     {
-        TodoContext todoContext;
-
-        public TodoRepository(TodoContext context)
-        {
-            this.todoContext = context;
-        }
+        private TodoContext todoContext = new TodoContext();
 
         public List<Todo> ListAllTodo()
         {
