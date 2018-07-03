@@ -11,7 +11,12 @@ namespace TodoWithEF.Repositories
     {
         public TodoContext(DbContextOptions<TodoContext> options) : base(options)
         {
-
+            Todos = new List<Todo>()
+            {
+                new Todo{Title = "Start the day"},
+                new Todo{Title = "Feed the dog"},
+                new Todo{Title = "Clean the garage"}
+            };
         }
         public List<Todo> Todos { get; set; }
     }
