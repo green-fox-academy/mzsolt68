@@ -20,5 +20,11 @@ namespace TodoWithEF.Services
         {
             return todoContext.Todos.ToList();
         }
+
+        public void AddTodo(Todo newTodo)
+        {
+            todoContext.Add(newTodo);
+            todoContext.SaveChanges();
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace TodoWithEF.Services
     public interface ITodoRepository
     {
         List<Todo> ListAllTodo();
+        void AddTodo(Todo newTodo);
     }
 }

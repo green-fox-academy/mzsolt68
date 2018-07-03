@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TodoWithEF.Models;
 using TodoWithEF.Repositories;
 using TodoWithEF.Services;
 
@@ -22,6 +23,13 @@ namespace TodoWithEF.Controllers
         public IActionResult Index()
         {
             return View(todoRepository.ListAllTodo());
+        }
+
+        [HttpPost("AddTodo")]
+        public IActionResult AddTodo(Todo newTodo)
+        {
+            todoRepository.AddTodo(newTodo);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -5,6 +5,13 @@
 }
 
 <h2>Index</h2>
+<form action="AddTodo" method="post">
+    <div>Title: <input type="text" name="Title" /></div>
+    <div>Urgent: <input type="checkbox" name="IsUrgent" /></div>
+    <div>Done: <input type="checkbox" name="IsDone"</div>
+    <div><button type="submit">Add</button></div>
+
+</form>
 
 <h1>Todos for the day</h1>
 @foreach(var todo in Model)
