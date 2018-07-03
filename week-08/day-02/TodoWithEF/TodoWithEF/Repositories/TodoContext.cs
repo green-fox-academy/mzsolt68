@@ -9,15 +9,9 @@ namespace TodoWithEF.Repositories
 {
     public class TodoContext : DbContext
     {
-        public TodoContext()
+        public TodoContext(DbContextOptions<TodoContext> options) : base(options)
         {
-            Todos = new List<Todo>()
-            {
-                new Todo{Title = "Start the day", IsUrgent = false, IsDone =false},
-                new Todo{Title = "Feed the dog", IsUrgent = false, IsDone =false},
-                new Todo{Title = "Clean the garage", IsUrgent = false, IsDone =false}
-            };
         }
-        public List<Todo> Todos { get; set; }
+        public DbSet<Todo> Todos { get; set; }
     }
 }

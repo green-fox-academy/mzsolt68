@@ -9,7 +9,12 @@ namespace TodoWithEF.Services
 {
     public class TodoRepository : ITodoRepository
     {
-        private TodoContext todoContext = new TodoContext();
+        private TodoContext todoContext;
+
+        public TodoRepository(TodoContext context)
+        {
+            todoContext = context;
+        }
 
         public List<Todo> ListAllTodo()
         {
