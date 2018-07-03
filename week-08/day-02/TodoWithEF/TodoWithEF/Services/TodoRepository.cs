@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TodoWithEF.Repositories;
+
+namespace TodoWithEF.Services
+{
+    public class TodoRepository
+    {
+        TodoContext todoContext;
+
+        public TodoRepository(TodoContext context)
+        {
+            this.todoContext = context;
+        }
+    }
+}

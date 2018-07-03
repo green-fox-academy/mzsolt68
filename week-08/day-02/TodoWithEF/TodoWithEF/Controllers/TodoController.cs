@@ -10,6 +10,8 @@ namespace TodoWithEF.Controllers
     [Route("/list")]
     public class TodoController : Controller
     {
+
+
         public IActionResult Index()
         {
             return View();
