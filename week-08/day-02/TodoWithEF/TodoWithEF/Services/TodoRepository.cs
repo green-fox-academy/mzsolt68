@@ -34,7 +34,7 @@ namespace TodoWithEF.Services
 
         public void DeleteTodo(int ID)
         {
-            todoContext.Remove(todoContext.Todos.Where(t => t.Id == ID));
+            todoContext.Remove(todoContext.Todos.Where(t => t.Id == ID).SingleOrDefault());
             todoContext.SaveChanges();
         }
     }
