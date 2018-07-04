@@ -10,18 +10,18 @@
 
 <table>
     <thead>
-        <td width="30"><h4>ID</h4></td>
-        <td width="150"><h4>ACTION</h4></td>
-        <td width="75"><h4>DONE</h4></td>
-        <td width="75"><h4>URGENT</h4></td>
+    <td width="30"><h4>ID</h4></td>
+    <td width="150"><h4>ACTION</h4></td>
+    <td width="75"><h4>URGENT</h4></td>
+    <td width="75"><h4>DONE</h4></td>
     </thead>
     @foreach (var todo in Model)
     {
         <tr>
             <td>@todo.Id</td>
             <td>@todo.Title</td>
-            <td>@todo.IsDone</td>
             <td>@todo.IsUrgent</td>
+            <td>@todo.IsDone</td>
         </tr>
     }
 </table>
