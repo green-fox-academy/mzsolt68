@@ -26,5 +26,10 @@ namespace TodoWithEF.Services
             todoContext.Add(newTodo);
             todoContext.SaveChanges();
         }
+
+        public List<Todo> ListActiveTodos()
+        {
+            return todoContext.Todos.Where(t => t.IsDone == false).ToList();
+        }
     }
 }
