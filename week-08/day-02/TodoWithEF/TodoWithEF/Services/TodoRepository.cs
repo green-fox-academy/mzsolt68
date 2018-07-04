@@ -37,5 +37,16 @@ namespace TodoWithEF.Services
             todoContext.Remove(todoContext.Todos.Where(t => t.Id == ID).SingleOrDefault());
             todoContext.SaveChanges();
         }
+
+        public void UpdateTodo(Todo updatedTodo)
+        {
+            todoContext.Update(updatedTodo);
+            todoContext.SaveChanges();
+        }
+
+        public Todo GetTodo(int id)
+        {
+            return todoContext.Todos.Where(t => t.Id == id).SingleOrDefault();
+        }
     }
 }

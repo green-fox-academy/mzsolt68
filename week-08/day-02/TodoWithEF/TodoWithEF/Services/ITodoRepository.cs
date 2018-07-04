@@ -12,5 +12,7 @@ namespace TodoWithEF.Services
         List<Todo> ListActiveTodos();
         void AddTodo(Todo newTodo);
         void DeleteTodo(int ID);
+        void UpdateTodo(Todo updatedTodo);
+        Todo GetTodo(int id);
     }
 }
