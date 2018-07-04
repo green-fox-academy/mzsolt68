@@ -32,7 +32,13 @@ namespace TodoWithEF.Controllers
             }
         }
 
-        [HttpPost("AddTodo")]
+        [HttpGet("Add")]
+        public IActionResult AddTodo()
+        {
+            return View("Add");
+        }
+
+        [HttpPost("Add")]
         public IActionResult AddTodo(Todo newTodo)
         {
             todoRepository.AddTodo(newTodo);

@@ -4,20 +4,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<form action="AddTodo" method="post">
-    <div>Title: <input type="text" name="Title" /></div>
-    <div>Urgent: <input type="checkbox" name="IsUrgent" value="true"/></div>
-    <div>Done: <input type="checkbox" name="IsDone" value="true"/></div>
-    <div><button type="submit">Add</button></div>
-
-</form>
-
 <h1>Todos for the day</h1>
-@foreach(var todo in Model)
-{
-    <ul>
-        <li>@todo.Title</li>
-    </ul>
 
-}
+<a href="Add">Add new todo</a>
+
+<table>
+    <thead>
+        <td width="30"><h4>ID</h4></td>
+        <td width="150"><h4>ACTION</h4></td>
+        <td width="75"><h4>DONE</h4></td>
+        <td width="75"><h4>URGENT</h4></td>
+    </thead>
+    @foreach (var todo in Model)
+    {
+        <tr>
+            <td>@todo.Id</td>
+            <td>@todo.Title</td>
+            <td>@todo.IsDone</td>
+            <td>@todo.IsUrgent</td>
+        </tr>
+    }
+</table>
