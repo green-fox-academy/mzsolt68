@@ -20,9 +20,16 @@ namespace TodoWithEF.Controllers
             todoRepository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool isActive)
         {
-            return View(todoRepository.ListAllTodo());
+            if (isActive)
+            {
+                return View(todoRepository.ListActiveTodos());
+            }
+            else
+            {
+                return View(todoRepository.ListAllTodo());
+            }
         }
 
         [HttpPost("AddTodo")]
