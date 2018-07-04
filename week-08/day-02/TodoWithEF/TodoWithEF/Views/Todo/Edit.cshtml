@@ -6,9 +6,9 @@
 
 <h2>Edit todo</h2>
 
-<form action="/@Model.Id/edit" method="post">
-    <div>Todo description: <input type"text" name="Title" value="@Model.Title"/></div>
-    <div>Urgent: <input type="checkbox" name="IsUrgent" checked="@Model.IsUrgent" value="true"/></div>
-    <div>Done: <input type="checkbox" name="IsDone" checked="@Model.IsDone" value="true"/></div>
-    <div><button type="submit">Submit</button><a href="/">Cancel</a></div>
+<form class="form-horizontal" action="/@Model.Id/edit" method="post">
+    <div class="form-group">Todo description: <input type"text" name="Title" value="@Model.Title"/></div>
+    <div class="form-group">Urgent: <input type="checkbox" name="IsUrgent" checked="@Model.IsUrgent" value="true"/></div>
+    <div class="form-group">Done: <input type="checkbox" name="IsDone" checked="@Model.IsDone" value="true"/></div>
+    <div class="form-group"><button class="btn btn-lg btn-primary" type="submit">Submit</button><a href="/" class="btn">Cancel</a></div>
 </form>
