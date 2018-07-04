@@ -45,10 +45,23 @@ namespace TodoWithEF.Controllers
             return RedirectToAction("Index");
         }
 
-        [Route("delete/{id}")]
+        [Route("{id}/delete")]
         public IActionResult DeleteTodo(int id)
         {
             todoRepository.DeleteTodo(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("{id}/edit")]
+        public IActionResult UpdateTodo(int id)
+        {
+            return View("Edit", todoRepository.GetTodo(id));
+        }
+
+        [HttpPost("{id}/edit")]
+        public IActionResult UpdateTodo(Todo updatedTodo)
+        {
+            todoRepository.UpdateTodo(updatedTodo);
             return RedirectToAction("Index");
         }
     }

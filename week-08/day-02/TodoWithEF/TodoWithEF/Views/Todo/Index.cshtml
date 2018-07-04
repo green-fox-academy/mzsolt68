@@ -14,15 +14,18 @@
     <td width="150"><h4>ACTION</h4></td>
     <td width="75"><h4>URGENT</h4></td>
     <td width="75"><h4>DONE</h4></td>
+    <td width="50"></td>
+
     </thead>
     @foreach (var todo in Model)
     {
-        <tr>
-            <td>@todo.Id</td>
-            <td>@todo.Title</td>
-            <td>@todo.IsUrgent</td>
-            <td>@todo.IsDone</td>
-            <td><a href="delete/@todo.Id">delete</a></td>
-        </tr>
+    <tr>
+        <td>@todo.Id</td>
+        <td>@todo.Title</td>
+        <td>@todo.IsUrgent</td>
+        <td>@todo.IsDone</td>
+        <td><a href="@todo.Id/delete">delete</a></td>
+        <td><a href="@todo.Id/edit">edit</a></td>
+    </tr>
     }
 </table>
