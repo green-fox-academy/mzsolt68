@@ -28,7 +28,7 @@
                     <td>@todo.Title</td>
                     <td>@todo.IsUrgent</td>
                     <td>@todo.IsDone</td>
-                    <td>@todo.Assignee.Name</td>
+                    <td><a href="/Assignee/list/@todo.AssigneeId">@todo.Assignee.Name</a></td>
                     <td>
                         <a class="btn btn-danger" href="@todo.Id/delete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
                         <a class="btn btn-info" href="@todo.Id/edit"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
