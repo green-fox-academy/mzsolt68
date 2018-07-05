@@ -36,5 +36,24 @@ namespace TodoWithEF.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("{id}/delete")]
+        public IActionResult DeleteAssignee(int id)
+        {
+            assigneeRepository.DeleteAssignee(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("{id}/edit")]
+        public IActionResult UpdateAssignee(int id)
+        {
+            return View("Edit", assigneeRepository.GetAssignee(id));
+        }
+
+        [HttpPost("{id}/edit")]
+        public IActionResult UpdateAssigneeo(Assignee updatedAssignee)
+        {
+            assigneeRepository.UpdateAssignee(updatedAssignee);
+            return RedirectToAction("Index");
+        }
     }
 }

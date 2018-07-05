@@ -1,0 +1,14 @@
+﻿@model Assignee
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Edit assignee</h2>
+
+<form class="form-horizontal" action="/Assignee/@Model.ID/edit" method="post">
+    <div class="form-group">Name: <input type="text" name="Name" value="@Model.Name" /></div>
+    <div class="form-group">E-mail: <input type="text" name="Email" value="@Model.Email" /></div>
+    <div class="form-group"><button class="btn btn-lg btn-primary" type="submit">Submit</button><a href="/" class="btn">Cancel</a></div>
+</form>
