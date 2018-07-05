@@ -1,4 +1,4 @@
-﻿@model Todo
+﻿@model TodoWithEF.ViewModels.TodoAssigneeVM
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,9 +6,25 @@
 
 <h2>Edit todo</h2>
 
-<form class="form-horizontal" action="/@Model.Id/edit" method="post">
-    <div class="form-group">Todo description: <input type"text" name="Title" value="@Model.Title"/></div>
-    <div class="form-group">Urgent: <input type="checkbox" name="IsUrgent" checked="@Model.IsUrgent" value="true"/></div>
-    <div class="form-group">Done: <input type="checkbox" name="IsDone" checked="@Model.IsDone" value="true"/></div>
-    <div class="form-group"><button class="btn btn-lg btn-primary" type="submit">Submit</button><a href="/" class="btn">Cancel</a></div>
-</form>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Todo.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Todo.Title, "Todo description: ")
+        @Html.EditorFor(m => m.Todo.Title)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Todo.IsUrgent, "Urgent: ")
+        @Html.CheckBoxFor(m => m.Todo.IsUrgent)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Todo.IsDone, "Done: ")
+        @Html.CheckBoxFor(m => m.Todo.IsDone)
+    </div>
+    <div class="form-group">
+        @Html.Label("Assignee: ")
+        @Html.DropDownListFor(m => m.Todo.AssigneeId, new SelectList(Model.Assignees, "Id", "Name"), "Select assignee")
+    </div>
+    <div><button class="btn btn-lg btn-primary" type="submit">Submit</button></div>
+
+}
