@@ -11,9 +11,10 @@ using TodoWithEF.Repositories;
 namespace TodoWithEF.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    partial class TodoContextModelSnapshot : ModelSnapshot
+    [Migration("20180705120501_assignee_class_added")]
+    partial class assignee_class_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

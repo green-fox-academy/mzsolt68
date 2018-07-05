@@ -12,6 +12,8 @@ namespace TodoWithEF.Repositories
         public TodoContext(DbContextOptions<TodoContext> options) : base(options)
         {
         }
+
         public DbSet<Todo> Todos { get; set; }
+        public DbSet<Assignee> Assignees { get; set; }
     }
 }
