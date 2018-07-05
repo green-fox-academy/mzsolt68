@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add new assignee</h2>
+
+<form action="/Assignee/Add" method="post">
+    <div>Title: <input type="text" name="Name" /></div>
+    <div>E-mail: <input type="text" name="Email" /></div>
+    <div><button type="submit">Add</button></div>
+
+</form>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TodoWithEF.Models;
 using TodoWithEF.Services;
 
 namespace TodoWithEF.Controllers
@@ -21,5 +22,19 @@ namespace TodoWithEF.Controllers
         {
             return View(assigneeRepository.ListAllAssignees());
         }
+
+        [HttpGet("Add")]
+        public IActionResult AddAssignee()
+        {
+            return View("Add");
+        }
+
+        [HttpPost("Add")]
+        public IActionResult AddAssignee(Assignee newAssignee)
+        {
+            assigneeRepository.AddAssignee(newAssignee);
+            return RedirectToAction("Index");
+        }
+
     }
 }
