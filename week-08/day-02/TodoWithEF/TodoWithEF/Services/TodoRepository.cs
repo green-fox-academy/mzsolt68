@@ -23,7 +23,7 @@ namespace TodoWithEF.Services
 
         public void AddTodo(Todo newTodo)
         {
-            todoContext.Add(newTodo);
+            todoContext.Todos.Add(newTodo);
             todoContext.SaveChanges();
         }
 
@@ -34,13 +34,13 @@ namespace TodoWithEF.Services
 
         public void DeleteTodo(int ID)
         {
-            todoContext.Remove(todoContext.Todos.Where(t => t.Id == ID).SingleOrDefault());
+            todoContext.Todos.Remove(todoContext.Todos.Where(t => t.Id == ID).SingleOrDefault());
             todoContext.SaveChanges();
         }
 
         public void UpdateTodo(Todo updatedTodo)
         {
-            todoContext.Update(updatedTodo);
+            todoContext.Todos.Update(updatedTodo);
             todoContext.SaveChanges();
         }
 
