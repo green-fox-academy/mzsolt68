@@ -7,9 +7,9 @@ namespace TodoWithEF.Models
 {
     public class Assignee
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public ICollection<Todo> AssignedTodos { get; set; }
+        public List<Todo> AssignedTodos { get; set; }
     }
 }
