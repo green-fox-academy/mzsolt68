@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TodoWithEF.Repositories;
 using TodoWithEF.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TodoWithEF.Services
 {
@@ -18,7 +19,7 @@ namespace TodoWithEF.Services
 
         public List<Todo> ListAllTodo()
         {
-            return todoContext.Todos.ToList();
+            return todoContext.Todos.Include(t => t.Assignee).ToList();
         }
 
         public void AddTodo(Todo newTodo)
@@ -29,7 +30,7 @@ namespace TodoWithEF.Services
 
         public List<Todo> ListActiveTodos()
         {
-            return todoContext.Todos.Where(t => t.IsDone == false).ToList();
+            return todoContext.Todos.Include(t => t.Assignee).Where(t => t.IsDone == false).ToList();
         }
 
         public void DeleteTodo(int ID)
@@ -46,7 +47,7 @@ namespace TodoWithEF.Services
 
         public Todo GetTodo(int id)
         {
-            return todoContext.Todos.Where(t => t.Id == id).SingleOrDefault();
+            return todoContext.Todos.Include(t => t.Assignee).Where(t => t.Id == id).SingleOrDefault();
         }
     }
 }

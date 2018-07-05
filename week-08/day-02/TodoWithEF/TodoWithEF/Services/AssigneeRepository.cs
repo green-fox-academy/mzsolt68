@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TodoWithEF.Models;
 using TodoWithEF.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace TodoWithEF.Services
 {
@@ -30,12 +31,12 @@ namespace TodoWithEF.Services
 
         public Assignee GetAssignee(int id)
         {
-            return todoContext.Assignees.Where(a => a.ID == id).SingleOrDefault();
+            return todoContext.Assignees.Include(a => a.AssignedTodos).Where(a => a.Id == id).SingleOrDefault();
         }
 
         public List<Assignee> ListAllAssignees()
         {
-            return todoContext.Assignees.ToList();
+            return todoContext.Assignees.Include(a => a.AssignedTodos).ToList();
         }
 
         public void UpdateAssignee(Assignee updatedAssignee)
