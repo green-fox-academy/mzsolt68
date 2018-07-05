@@ -17,6 +17,7 @@
             <td><h4>ACTION</h4></td>
             <td><h4>URGENT</h4></td>
             <td><h4>DONE</h4></td>
+            <td><h4>ASSIGNEE</h4></td>
             <td><h4>ACTIONS</h4></td>
 
             </thead>
@@ -27,6 +28,7 @@
                     <td>@todo.Title</td>
                     <td>@todo.IsUrgent</td>
                     <td>@todo.IsDone</td>
+                    <td>@todo.Assignee.Name</td>
                     <td>
                         <a class="btn btn-danger" href="@todo.Id/delete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
                         <a class="btn btn-info" href="@todo.Id/edit"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
