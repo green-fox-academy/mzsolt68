@@ -55,5 +55,11 @@ namespace TodoWithEF.Controllers
             assigneeRepository.UpdateAssignee(updatedAssignee);
             return RedirectToAction("Index");
         }
+
+        [HttpGet("list/{id}")]
+        public IActionResult ListAssignedTodos(int id)
+        {
+            return View("List", assigneeRepository.GetAssignee(id));
+        }
     }
 }

@@ -22,12 +22,12 @@
             @foreach (var assignee in Model)
             {
                 <tr>
-                    <td>@assignee.ID</td>
-                    <td>@assignee.Name</td>
+                    <td>@assignee.Id</td>
+                    <td><a href="/Assignee/list/@assignee.Id">@assignee.Name</a></td>
                     <td>@assignee.Email</td>
                     <td>
-                        <a class="btn btn-danger" href="/Assignee/@assignee.ID/delete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-                        <a class="btn btn-info" href="/Assignee/@assignee.ID/edit"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                        <a class="btn btn-danger" href="/Assignee/@assignee.Id/delete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                        <a class="btn btn-info" href="/Assignee/@assignee.Id/edit"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                     </td>
                 </tr>
             }
