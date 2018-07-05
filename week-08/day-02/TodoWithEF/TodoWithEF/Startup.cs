@@ -28,6 +28,7 @@ namespace TodoWithEF
             services.AddMvc();
             services.AddDbContext<TodoContext>(options => options.UseSqlServer(connectionString));
             services.AddTransient<ITodoRepository, TodoRepository>();
+            services.AddTransient<IAssigneeRepository, AssigneeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,7 +6,7 @@ using TodoWithEF.Models;
 
 namespace TodoWithEF.Services
 {
-    interface IAssigneeRepository
+    public interface IAssigneeRepository
     {
         List<Assignee> ListAllAssignees();
         void AddAssignee(Assignee newAssignee);

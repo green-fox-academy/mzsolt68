@@ -1,0 +1,35 @@
+﻿@model List<Assignee>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Assignees</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="Add"><i class="glyphicon glyphicon-plus"></i> Add new assignee</a>
+        </div>
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+            <td><h4>ID</h4></td>
+            <td><h4>NAME</h4></td>
+            <td><h4>EMAIL</h4></td>
+            <td><h4>ACTIONS</h4></td>
+
+            </thead>
+            @foreach (var assignee in Model)
+            {
+                <tr>
+                    <td>@assignee.ID</td>
+                    <td>@assignee.Name</td>
+                    <td>@assignee.Email</td>
+                    <td>
+                        <a class="btn btn-danger" href="@assignee.ID/delete"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                        <a class="btn btn-info" href="@assignee.ID/edit"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
