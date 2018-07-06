@@ -14,8 +14,8 @@
     <table>
         <tr>
             <td style="font-size:25px; width:70px; text-align:center">@post.Votes</td>
-            <td style="font-size:25px; width:50px"><a href="Up/@post.Id">+</a></td>
-            <td style="font-size:25px; width:50px"><a href="Down/@post.Id">-</a></td>
+            <td style="font-size:25px; width:50px"><a class="btn btn-primary" href="Up/@post.Id"><i class="glyphicon glyphicon-plus"></i></a></td>
+            <td style="font-size:25px; width:50px"><a class="btn btn-default" href="Down/@post.Id"><i class="glyphicon glyphicon-minus"</a></td>
             <td style="font-size:25px; width:500px"><a href="@post.Url">@post.Title</a></td>
             <td style="font-size:25px; width:auto">@post.PostedAt.Date.ToString("yyyy.MM.dd")</td>
         </tr>
