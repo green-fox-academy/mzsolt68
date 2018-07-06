@@ -23,5 +23,20 @@ namespace CloneReddit.Controllers
             return View(redditRepository.GetAllPost());
         }
 
+        [Route("Up/{id}")]
+        public IActionResult UpVote(int id)
+        {
+            Post votedPost = redditRepository.GetPost(id);
+            redditRepository.Upvote(votedPost);
+            return RedirectToAction("Index");
+        }
+
+        [Route("Down/{id}")]
+        public IActionResult DownVote(int id)
+        {
+            Post votedPost = redditRepository.GetPost(id);
+            redditRepository.DownVote(votedPost);
+            return RedirectToAction("Index");
+        }
     }
 }
