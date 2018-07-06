@@ -18,9 +18,17 @@ namespace CloneReddit.Controllers
             redditRepository = repo;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View(redditRepository.GetAllPost());
+        }
+
+        [HttpPost]
+        public IActionResult Index(Post newPost)
+        {
+            redditRepository.AddPost(newPost);
+            return RedirectToAction("Index");
         }
 
         [Route("Up/{id}")]
@@ -37,6 +45,12 @@ namespace CloneReddit.Controllers
             Post votedPost = redditRepository.GetPost(id);
             redditRepository.DownVote(votedPost);
             return RedirectToAction("Index");
+        }
+
+        [Route("submit")]
+        public IActionResult SubmitNewPost()
+        {
+            return View("Submit");
         }
     }
 }
