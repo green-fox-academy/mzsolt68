@@ -27,6 +27,7 @@ namespace CloneReddit.Controllers
         [HttpPost]
         public IActionResult Index(Post newPost)
         {
+            newPost.PostedAt = DateTime.Now;
             redditRepository.AddPost(newPost);
             return RedirectToAction("Index");
         }

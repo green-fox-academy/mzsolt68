@@ -3,8 +3,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<a href="/submit">Submit new post</a>
+<br />
+<a style="font-size:15px" href="/submit">Submit new post</a>
 
 <h2 style="text-align:center">Trending posts</h2>
 
@@ -16,7 +16,8 @@
             <td style="font-size:25px; width:70px; text-align:center">@post.Votes</td>
             <td style="font-size:25px; width:50px"><a href="Up/@post.Id">+</a></td>
             <td style="font-size:25px; width:50px"><a href="Down/@post.Id">-</a></td>
-            <td style="font-size:25px; width:auto"><a href="@post.Url">@post.Title</a></td>
+            <td style="font-size:25px; width:500px"><a href="@post.Url">@post.Title</a></td>
+            <td style="font-size:25px; width:auto">@post.PostedAt.Date.ToString("yyyy.MM.dd")</td>
         </tr>
     </table>
 
