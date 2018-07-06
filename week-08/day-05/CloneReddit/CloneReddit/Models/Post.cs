@@ -11,5 +11,6 @@ namespace CloneReddit.Models
         public string Title { get; set; }
         public string Url { get; set; }
         public int Votes { get; set; }
+        public DateTime PostedAt { get; set; }
     }
 }
