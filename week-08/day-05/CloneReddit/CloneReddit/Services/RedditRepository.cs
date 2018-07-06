@@ -28,6 +28,11 @@ namespace CloneReddit.Services
             redditContext.SaveChanges();
         }
 
+        public List<Post> GetAllPost()
+        {
+            return redditContext.Posts.ToList();
+        }
+
         public Post GetPost(int postId)
         {
             return redditContext.Posts.Where(p => p.Id == postId).SingleOrDefault();

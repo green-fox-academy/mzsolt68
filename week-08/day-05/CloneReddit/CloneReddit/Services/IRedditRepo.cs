@@ -12,5 +12,6 @@ namespace CloneReddit.Services
         void Upvote(Post votedPost);
         void DownVote(Post votedPost);
         Post GetPost(int postId);
+        List<Post> GetAllPost();
     }
 }
