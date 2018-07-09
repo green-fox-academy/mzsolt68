@@ -11,6 +11,17 @@ namespace RESTApiTest.Controllers
     [Route("api/Home")]
     public class HomeController : Controller
     {
-
+        [HttpGet("/doubling")]
+        public IActionResult Doubling(int? input)
+        {
+            if(input == null)
+            {
+                return Json(new { error = "Please provide an input!" });
+            }
+            else
+            {
+                return Json(new { received = input, result = input * 2});
+            }
+        }
     }
 }
