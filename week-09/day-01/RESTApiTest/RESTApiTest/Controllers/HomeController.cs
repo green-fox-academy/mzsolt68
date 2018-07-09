@@ -73,5 +73,38 @@ namespace RESTApiTest.Controllers
             }
             return Json(new { error = "Please provide a number!" });
         }
+
+        [HttpPost("/array")]
+        public IActionResult Array([FromBody]ArrayHandler data)
+        {
+            if(!string.IsNullOrEmpty(data.What) && data.Numbers.Length > 0)
+            {
+                int tmp = 0;
+                switch (data.What)
+                {
+                    case "sum":
+                        for(int i = 0; i < data.Numbers.Length;i++)
+                        {
+                            tmp += data.Numbers[i];
+                        }
+                        return Json(new {result = tmp });
+                    case "multiply":
+                        tmp = 1;
+                        for(int i = 0; i < data.Numbers.Length; i++)
+                        {
+                            tmp *= data.Numbers[i];
+                        }
+                        return Json(new { result = tmp });
+                    case "double":
+                        for(int i = 0; i < data.Numbers.Length; i++)
+                        {
+                            data.Numbers[i] = data.Numbers[i] * 2;
+                        }
+                        return Json(new { result = data.Numbers });
+                        break;
+                }
+            }
+            return Json(new { error = "Please provide what to do with the numbers!" });
+        }
     }
 }
