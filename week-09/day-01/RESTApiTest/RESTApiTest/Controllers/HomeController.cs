@@ -24,6 +24,20 @@ namespace RESTApiTest.Controllers
             }
         }
 
+        [HttpGet("/greeter")]
+        public IActionResult Greeter(string name, string title)
+        {
+            if(string.IsNullOrEmpty(name))
+            {
+                return Json(new { error = "Please provide a name!" });
+            }
+            if(string.IsNullOrEmpty(title))
+            {
+                return Json(new { error = "Please provide a title!" });
+            }
+            return Json(new { welcome_message = $"Oh, hi there {name}, my dear {title}!" });
+        }
+
         [HttpGet("/appenda/{appendable}")]
         public IActionResult Appenda(string appendable)
         {
