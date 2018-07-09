@@ -23,5 +23,13 @@ namespace RESTApiTest.Controllers
                 return Json(new { received = input, result = input * 2});
             }
         }
+
+        [HttpGet("/appenda/{appendable}")]
+        public IActionResult Appenda(string appendable)
+        {
+            if (!string.IsNullOrEmpty(appendable))
+                return Json(new { appended = $"{appendable}a" });
+            return NotFound();
+        }
     }
 }
