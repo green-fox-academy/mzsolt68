@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RESTApiTest.Repository;
+using RESTApiTest.Services;
 
 namespace RESTApiTest
 {
@@ -26,6 +27,7 @@ namespace RESTApiTest
             string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = log; Integrated Security = True";
             services.AddMvc();
             services.AddDbContext<LogDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddTransient<ILog, LogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

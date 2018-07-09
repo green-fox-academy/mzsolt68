@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RESTApiTest.Model;
+using RESTApiTest.Services;
 
 namespace RESTApiTest.Controllers
 {
@@ -12,6 +13,13 @@ namespace RESTApiTest.Controllers
     [Route("api/Home")]
     public class HomeController : Controller
     {
+        private ILog logger;
+
+        public HomeController(ILog repo)
+        {
+            logger = repo;
+        }
+
         [HttpGet("/doubling")]
         public IActionResult Doubling(int? input)
         {
