@@ -31,5 +31,36 @@ namespace RESTApiTest.Controllers
                 return Json(new { appended = $"{appendable}a" });
             return NotFound();
         }
+
+        [HttpPost("/dountil/{what}")]
+        public IActionResult DoUntil(string what,[FromBody] Data until)
+        {
+            if (until != null)
+            {
+                int result = 0;
+                switch (what)
+                {
+                    case "sum":
+                        for (int i = 1; i <= until.until; i++)
+                        {
+                            result += i;
+                        }
+                        break;
+                    case "factor":
+                        result = 1;
+                        for(int i = 1; i <= until.until; i++)
+                        {
+                            result *= i;
+                        }
+                        break;
+                }
+                return Json(new {result = result });
+            }
+            return Json(new { error = "Please provide a number!" });
+        }
+    }
+    public class Data
+    {
+        public int? until;
     }
 }
