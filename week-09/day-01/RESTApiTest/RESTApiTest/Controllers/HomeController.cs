@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RESTApiTest.Model;
 
 namespace RESTApiTest.Controllers
 {
@@ -47,7 +48,7 @@ namespace RESTApiTest.Controllers
         }
 
         [HttpPost("/dountil/{what}")]
-        public IActionResult DoUntil(string what,[FromBody] Data until)
+        public IActionResult DoUntil(string what,[FromBody] UntilData until)
         {
             if (until != null)
             {
@@ -55,14 +56,14 @@ namespace RESTApiTest.Controllers
                 switch (what)
                 {
                     case "sum":
-                        for (int i = 1; i <= until.until; i++)
+                        for (int i = 1; i <= until.Until; i++)
                         {
                             result += i;
                         }
                         break;
                     case "factor":
                         result = 1;
-                        for(int i = 1; i <= until.until; i++)
+                        for(int i = 1; i <= until.Until; i++)
                         {
                             result *= i;
                         }
@@ -72,9 +73,5 @@ namespace RESTApiTest.Controllers
             }
             return Json(new { error = "Please provide a number!" });
         }
-    }
-    public class Data
-    {
-        public int? until;
     }
 }
