@@ -109,7 +109,6 @@ namespace RESTApiTest.Controllers
                             data.Numbers[i] = data.Numbers[i] * 2;
                         }
                         return Json(new { result = data.Numbers });
-                        break;
                 }
             }
             return Json(new { error = "Please provide what to do with the numbers!" });
