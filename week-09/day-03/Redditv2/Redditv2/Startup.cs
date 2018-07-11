@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Redditv2.Repositories;
+using Redditv2.Services;
 
 namespace Redditv2
 {
@@ -27,6 +28,7 @@ namespace Redditv2
         {
             services.AddMvc();
             services.AddDbContext<RedditDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RedditDatabase")));
+            services.AddTransient<IPostRepository, PostRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
