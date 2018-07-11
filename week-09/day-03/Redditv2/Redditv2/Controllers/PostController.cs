@@ -34,5 +34,19 @@ namespace Redditv2.Controllers
             newPost = postRepository.GetPostByTitle(newPost.Title);
             return Json(newPost);
         }
+
+        [HttpPut("/posts/{id}/upvote")]
+        public IActionResult Upvote(int id)
+        {
+            postRepository.Upvote(id);
+            return Json(postRepository.GetPostById(id));
+        }
+
+        [HttpPut("/posts/{id}/downvote")]
+        public IActionResult DownVote(int id)
+        {
+            postRepository.DownVote(id);
+            return Json(postRepository.GetPostById(id));
+        }
     }
 }
