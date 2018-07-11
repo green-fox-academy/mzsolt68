@@ -12,13 +12,13 @@ namespace RESTApiTest.Tester
 {
     public class UnitTest1
     {
-        TestServer server { get; set; }
-        HttpClient client { get; set; }
+        private TestServer Server { get; set; }
+        private HttpClient Client { get; set; }
 
         public UnitTest1()
         {
-            server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
-            client = server.CreateClient();
+            Server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
+            Client = Server.CreateClient();
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace RESTApiTest.Tester
         [Fact]
         public async Task ShouldGetOK()
         {
-            var response = await client.GetAsync("/doubling");
+            var response = await Client.GetAsync("/doubling");
             var statusCode = response.StatusCode;
             Assert.Equal(HttpStatusCode.OK, statusCode);
         }
