@@ -16,13 +16,13 @@ namespace TodoWithEF.Controllers
     {
         private ITodoRepository todoRepository;
         private IAssigneeRepository assigneeRepository;
-        private TodoAssigneeVM TodoAssigneeVM;
+        private TodoAssigneeViewModel TodoAssigneeViewModel;
 
         public TodoController(ITodoRepository todoRepo, IAssigneeRepository assigneeRepo)
         {
             todoRepository = todoRepo;
             assigneeRepository = assigneeRepo;
-            TodoAssigneeVM = new TodoAssigneeVM();
+            TodoAssigneeViewModel = new TodoAssigneeViewModel();
         }
 
         public IActionResult Index(bool isActive)
@@ -60,13 +60,13 @@ namespace TodoWithEF.Controllers
         [HttpGet("{id}/edit")]
         public IActionResult UpdateTodo(int id)
         {
-            TodoAssigneeVM.Todo = todoRepository.GetTodo(id);
-            TodoAssigneeVM.Assignees = assigneeRepository.ListAllAssignees();
-            return View("Edit", TodoAssigneeVM);
+            TodoAssigneeViewModel.Todo = todoRepository.GetTodo(id);
+            TodoAssigneeViewModel.Assignees = assigneeRepository.ListAllAssignees();
+            return View("Edit", TodoAssigneeViewModel);
         }
 
         [HttpPost("{id}/edit")]
-        public IActionResult UpdateTodo(TodoAssigneeVM model)
+        public IActionResult UpdateTodo(TodoAssigneeViewModel model)
         {
             todoRepository.UpdateTodo(model.Todo);
             return RedirectToAction("Index");
