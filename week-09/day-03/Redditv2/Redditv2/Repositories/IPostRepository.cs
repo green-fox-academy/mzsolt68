@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Redditv2.Services
+namespace Redditv2.Repositories
 {
     public interface IPostRepository
     {

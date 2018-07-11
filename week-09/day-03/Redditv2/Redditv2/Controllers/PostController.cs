@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Redditv2.Models;
-using Redditv2.Services;
+using Redditv2.Repositories;
 
 namespace Redditv2.Controllers
 {

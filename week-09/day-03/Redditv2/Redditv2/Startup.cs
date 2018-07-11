@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Redditv2.Repositories;
-using Redditv2.Services;
+using Redditv2.Repositories;
 
 namespace Redditv2
 {
