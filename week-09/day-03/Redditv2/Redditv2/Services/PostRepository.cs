@@ -22,8 +22,9 @@ namespace Redditv2.Services
             redditContext.SaveChanges();
         }
 
-        public void DownVote(Post votedPost)
+        public void DownVote(int id)
         {
+            Post votedPost = GetPostById(id);
             votedPost.Score--;
             redditContext.SaveChanges();
         }
@@ -43,8 +44,9 @@ namespace Redditv2.Services
             return redditContext.Posts.ToList();
         }
 
-        public void Upvote(Post votedPost)
+        public void Upvote(int id)
         {
+            Post votedPost = GetPostById(id);
             votedPost.Score++;
             redditContext.SaveChanges();
         }

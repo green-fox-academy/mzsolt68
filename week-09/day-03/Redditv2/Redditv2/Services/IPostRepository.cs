@@ -10,8 +10,8 @@ namespace Redditv2.Services
     {
         List<Post> GetPosts();
         void AddPost(Post newPost);
-        void Upvote(Post votedPost);
-        void DownVote(Post votedPost);
+        void Upvote(int id);
+        void DownVote(int id);
         Post GetPostById(int id);
         Post GetPostByTitle(string title);
     }
