@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Redditv2.Repositories;
 
 namespace Redditv2.Migrations
 {
     [DbContext(typeof(RedditDbContext))]
-    partial class RedditDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180711090048_TimeStamp_columntype_change")]
+    partial class TimeStamp_columntype_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
