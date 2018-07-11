@@ -12,7 +12,7 @@ namespace Redditv2.Services
         void AddPost(Post newPost);
         void Upvote(Post votedPost);
         void DownVote(Post votedPost);
-        Post GetPost(int id);
-
+        Post GetPostById(int id);
+        Post GetPostByTitle(string title);
     }
 }

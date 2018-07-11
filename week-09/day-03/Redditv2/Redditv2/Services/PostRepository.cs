@@ -28,9 +28,14 @@ namespace Redditv2.Services
             redditContext.SaveChanges();
         }
 
-        public Post GetPost(int id)
+        public Post GetPostById(int id)
         {
             return redditContext.Posts.Where(p => p.Id == id).SingleOrDefault();
+        }
+
+        public Post GetPostByTitle(string title)
+        {
+            return redditContext.Posts.Where(p => p.Title == title).SingleOrDefault();
         }
 
         public List<Post> GetPosts()
