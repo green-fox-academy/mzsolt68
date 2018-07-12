@@ -9,6 +9,6 @@ namespace Redditv2.Models
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-        public List<Post> Posts { get; set; }
+        public virtual List<Post> Posts { get; set; }
     }
 }
