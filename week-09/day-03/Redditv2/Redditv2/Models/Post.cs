@@ -12,5 +12,6 @@ namespace Redditv2.Models
         public string Url { get; set; }
         public string Timestamp { get; set; }
         public int Score { get; set; }
+        public int? UserId { get; set; }
     }
 }
