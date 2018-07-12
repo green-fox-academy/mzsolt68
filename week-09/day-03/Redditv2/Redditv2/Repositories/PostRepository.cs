@@ -17,6 +17,7 @@ namespace Redditv2.Repositories
 
         public void AddPost(Post newPost)
         {
+            newPost.Timestamp = Math.Round((DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString();
             redditContext.Posts.Add(newPost);
             redditContext.SaveChanges();
         }

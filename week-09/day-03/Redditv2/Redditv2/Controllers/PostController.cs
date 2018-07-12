@@ -25,7 +25,6 @@ namespace Redditv2.Controllers
         [HttpPost]
         public IActionResult AddPost([FromBody]Post newPost)
         {
-            newPost.Timestamp = Math.Round((DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString();
             postRepository.AddPost(newPost);
             newPost = postRepository.GetPostByTitle(newPost.Title);
             return Json(newPost);
