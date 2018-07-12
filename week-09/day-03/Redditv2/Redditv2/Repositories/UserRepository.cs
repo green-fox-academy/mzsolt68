@@ -38,7 +38,8 @@ namespace Redditv2.Repositories
 
         public bool IsUserExists(string userName)
         {
-            if (GetUserByName(userName) != null)
+            User tmp = GetUserByName(userName);
+            if (tmp != null)
                 return true;
             else
                 return false;
