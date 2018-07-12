@@ -14,9 +14,9 @@ namespace Redditv2.Repositories
         {
             redditContext = context;
         }
-        public void Adduser(User newUser)
+        public void Adduser(string userName)
         {
-            redditContext.Users.Add(newUser);
+            redditContext.Users.Add(new User {UserName = userName });
             redditContext.SaveChanges();
         }
 
@@ -34,6 +34,14 @@ namespace Redditv2.Repositories
         public User GetUserByName(string name)
         {
             return redditContext.Users.Where(u => u.UserName == name).SingleOrDefault();
+        }
+
+        public bool IsUserExists(string userName)
+        {
+            if (GetUserByName(userName) != null)
+                return true;
+            else
+                return false;
         }
 
         public void UpdateUser(User userToUpdate)

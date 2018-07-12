@@ -10,8 +10,9 @@ namespace Redditv2.Repositories
     {
         User GetUserById(int id);
         User GetUserByName(string name);
-        void Adduser(User newUser);
+        void Adduser(string userName);
         void DeleteUser(User userToDelete);
         void UpdateUser(User userToUpdate);
+        bool IsUserExists(string userName);
     }
 }
