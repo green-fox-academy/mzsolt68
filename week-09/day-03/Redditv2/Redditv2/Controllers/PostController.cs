@@ -10,10 +10,12 @@ namespace Redditv2.Controllers
     public class PostController : Controller
     {
         private IPostRepository postRepository;
+        private IUserRepository userRepository;
 
-        public PostController(IPostRepository repository)
+        public PostController(IPostRepository postRepo, IUserRepository userRepo)
         {
-            postRepository = repository;
+            postRepository = postRepo;
+            userRepository = userRepo;
         }
 
         [HttpGet]
