@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Redditv2.Repositories;
 
 namespace Redditv2.Migrations
 {
     [DbContext(typeof(RedditDbContext))]
-    partial class RedditDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180712091511_UserModelAdded")]
+    partial class UserModelAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
