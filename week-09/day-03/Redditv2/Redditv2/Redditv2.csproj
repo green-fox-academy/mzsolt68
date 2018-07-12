@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Compile Remove="Migrations\20180712131828_NavigationPropertiesChanged.cs" />
+    <Compile Remove="Migrations\20180712131828_NavigationPropertiesChanged.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
