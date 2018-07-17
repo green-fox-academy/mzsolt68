@@ -23,7 +23,6 @@ namespace MiddleLines
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = $"{canvas.ActualHeight}, {canvas.ActualWidth}";
             var foxDraw = new FoxDraw(canvas);
             foxDraw.StrokeColor(Colors.Red);
             foxDraw.DrawLine(0, this.Height / 2, this.Width, this.Height / 2);
