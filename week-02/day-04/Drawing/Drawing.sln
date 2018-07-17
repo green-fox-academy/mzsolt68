@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddleLines", "MiddleLines\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColoredBox", "ColoredBox\ColoredBox.csproj", "{1151904B-5CDB-4121-BCAC-A0039B22C72B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenterBox", "CenterBox\CenterBox.csproj", "{90841DF3-33C4-41DC-B690-B2A3FB3841CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1151904B-5CDB-4121-BCAC-A0039B22C72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1151904B-5CDB-4121-BCAC-A0039B22C72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1151904B-5CDB-4121-BCAC-A0039B22C72B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90841DF3-33C4-41DC-B690-B2A3FB3841CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90841DF3-33C4-41DC-B690-B2A3FB3841CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90841DF3-33C4-41DC-B690-B2A3FB3841CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90841DF3-33C4-41DC-B690-B2A3FB3841CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
