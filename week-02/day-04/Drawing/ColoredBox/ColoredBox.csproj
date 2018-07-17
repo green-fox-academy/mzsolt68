@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiddleLines\MiddleLines.csproj">
+      <Project>{4998e8e1-b228-4da2-9a9a-334cdd4662b7}</Project>
+      <Name>MiddleLines</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
