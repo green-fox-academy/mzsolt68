@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiddleLines;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,23 @@ namespace PurpleSteps
         public MainWindow()
         {
             InitializeComponent();
+            FoxDraw foxDraw = new FoxDraw(canvas);
+            DrawSteps(foxDraw);
+        }
+
+        void DrawSteps(FoxDraw foxdraw)
+        {
+            foxdraw.StrokeColor(Colors.Black);
+            foxdraw.FillColor(Colors.Purple);
+            int size = 20;
+            double x = 0;
+            double y = 0;
+            for(int i = 0; i < 10; i++)
+            {
+                foxdraw.DrawRectangle(x, y, size, size);
+                x += size;
+                y += size;
+            }
         }
     }
 }
