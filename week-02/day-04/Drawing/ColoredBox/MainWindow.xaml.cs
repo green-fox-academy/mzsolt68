@@ -1,23 +1,12 @@
 ﻿using MiddleLines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ColoredBox
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Draw a box with different colored lines
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -25,6 +14,11 @@ namespace ColoredBox
         {
             InitializeComponent();
             var foxDraw = new FoxDraw(canvas);
+            DrawBox(foxDraw);
+        }
+
+        void DrawBox(FoxDraw foxDraw)
+        {
             foxDraw.StrokeColor(Colors.Red);
             foxDraw.DrawLine(100, 100, 200, 100);
             foxDraw.StrokeColor(Colors.Black);
